@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/23 16:27:51 by youngmch          #+#    #+#             */
-/*   Updated: 2022/08/09 20:31:12 by youngmch         ###   ########.fr       */
+/*   Created: 2022/08/09 20:36:29 by youngmch          #+#    #+#             */
+/*   Updated: 2022/08/09 20:56:49 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_change(char *backup)
 {
@@ -28,6 +28,7 @@ static char	*ft_change(char *backup)
 	if (ft_strlen(backup) == i)
 	{
 		free(backup);
+		backup = NULL;
 		return (0);
 	}
 	new = (char *)malloc(sizeof(char) * (b_len - i + 1));
@@ -81,22 +82,22 @@ char	*get_next_line(int fd)
 {
 	char		*buf;
 	char		*line;
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
-	backup = ft_readtxt(fd, backup, buf);
-	if (!backup)
+	backup[fd] = ft_readtxt(fd, backup[fd], buf);
+	if (!backup[fd])
 	{
 		free(buf);
 		buf = NULL;
 		return (0);
 	}
-	line = ft_nextline(backup);
-	backup = ft_change(backup);
+	line = ft_nextline(backup[fd]);
+	backup[fd] = ft_change(backup[fd]);
 	free(buf);
 	buf = NULL;
 	return (line);
