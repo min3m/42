@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:27:51 by youngmch          #+#    #+#             */
-/*   Updated: 2022/08/09 20:31:12 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:15:13 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*ft_nextline(char *backup)
 
 static char	*ft_readtxt(int fd, char *backup, char *buf)
 {
-	int		temp;
+	ssize_t		temp;
 
 	temp = 1;
 	while (temp)
