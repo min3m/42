@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:36:16 by youngmch          #+#    #+#             */
-/*   Updated: 2022/10/06 21:41:57 by youngmch         ###   ########.fr       */
+/*   Created: 2022/07/06 18:05:03 by youngmch          #+#    #+#             */
+/*   Updated: 2022/07/15 21:52:50 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stddef.h>
-# include <limits.h>
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	size_t	i;
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 2048
-#endif
-
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_strchr(const char *str, int c);
-
-#endif
+	if (dest == 0 && src == 0)
+		return (dest);
+	if (dest > src)
+	{
+		i = n;
+		while (i)
+		{
+			((unsigned char *)dest)[i - 1] = ((unsigned char *)src)[i - 1];
+			i--;
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	return (dest);
+}

@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:36:16 by youngmch          #+#    #+#             */
-/*   Updated: 2022/10/06 21:41:57 by youngmch         ###   ########.fr       */
+/*   Created: 2022/07/08 17:06:20 by youngmch          #+#    #+#             */
+/*   Updated: 2022/07/12 14:34:06 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stddef.h>
-# include <limits.h>
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	size_t	j;
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 2048
-#endif
-
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_strchr(const char *str, int c);
-
-#endif
+	i = 0;
+	if (*little == 0)
+		return ((char *)big);
+	while (big[i] != 0 && i < len)
+	{
+		j = 0;
+		if (big[i] == little[j])
+		{
+			while (big[i + j] == little[j] && i + j < len)
+			{
+				j++;
+				if (little[j] == 0)
+					return ((char *)(big + i));
+			}
+		}
+		i++;
+	}
+	return (0);
+}

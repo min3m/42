@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:36:16 by youngmch          #+#    #+#             */
-/*   Updated: 2022/10/06 21:41:57 by youngmch         ###   ########.fr       */
+/*   Created: 2022/07/17 17:16:52 by youngmch          #+#    #+#             */
+/*   Updated: 2022/07/19 13:21:29 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stddef.h>
-# include <limits.h>
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*new;
+	t_list	*temp;
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 2048
-#endif
-
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_strchr(const char *str, int c);
-
-#endif
+	if (!lst || !f || !del)
+		return (0);
+	new = 0;
+	while (lst)
+	{
+		temp = ft_lstnew(f(lst->content));
+		if (!(temp))
+		{
+			ft_lstclear(&new, del);
+			return (0);
+		}
+		ft_lstadd_back(&new, temp);
+		lst = lst->next;
+	}
+	return (new);
+}

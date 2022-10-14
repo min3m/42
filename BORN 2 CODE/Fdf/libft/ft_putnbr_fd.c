@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 20:36:16 by youngmch          #+#    #+#             */
-/*   Updated: 2022/10/06 21:41:57 by youngmch         ###   ########.fr       */
+/*   Created: 2022/07/14 12:49:55 by youngmch          #+#    #+#             */
+/*   Updated: 2022/07/19 13:22:39 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stddef.h>
-# include <limits.h>
+static void	ft_recursive_fd(long long num, int fd)
+{
+	if (num == 0)
+		return ;
+	ft_recursive_fd(num / 10, fd);
+	write(fd, &"0123456789"[num % 10], 1);
+}
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 2048
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	long long	num;
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_strchr(const char *str, int c);
-
-#endif
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		num = -(long long)n;
+	}
+	else if (n == 0)
+	{
+		write(fd, "0", 1);
+		return ;
+	}
+	else
+		num = n;
+	ft_recursive_fd(num, fd);
+}
