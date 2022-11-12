@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 22:15:46 by youngmch          #+#    #+#             */
-/*   Updated: 2022/10/07 17:48:53 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:10:12 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "get_next_line_bonus.h"
 
 typedef struct s_list
 {
@@ -23,6 +24,11 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
+/* UTILLS */
+int		ft_atoi_base(char *nptr);
+/* GNL */
+char	*get_next_line(int fd);
+/* libft */
 int		ft_isalpha(int c);
 int		ft_isdigit(char str);
 int		ft_isalnum(char str);

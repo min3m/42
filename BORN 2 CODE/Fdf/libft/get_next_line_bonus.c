@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:36:29 by youngmch          #+#    #+#             */
-/*   Updated: 2022/08/09 20:56:49 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/12 17:33:13 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static char	*ft_change(char *backup)
 
 	b_len = 0;
 	i = 0;
-	b_len = ft_strlen(backup);
+	b_len = gnl_strlen(backup);
 	while (backup[i] != '\n' && backup[i] != '\0')
 		i++;
 	if (backup[i] == '\n')
 		i++;
-	if (ft_strlen(backup) == i)
+	if (gnl_strlen(backup) == i)
 	{
 		free(backup);
 		backup = NULL;
@@ -33,8 +33,8 @@ static char	*ft_change(char *backup)
 	}
 	new = (char *)malloc(sizeof(char) * (b_len - i + 1));
 	if (!new)
-		return (0);
-	ft_memmove(new, backup + i, b_len - i + 1);
+		exit(EXIT_FAILURE);
+	gnl_memmove(new, backup + i, b_len - i + 1);
 	free(backup);
 	backup = NULL;
 	return (new);
@@ -52,8 +52,8 @@ static char	*ft_nextline(char *backup)
 		i++;
 	line = (char *)malloc(sizeof(char) * (i + 1));
 	if (!line)
-		return (NULL);
-	ft_memmove(line, backup, i);
+		exit(EXIT_FAILURE);
+	gnl_memmove(line, backup, i);
 	line[i] = 0;
 	return (line);
 }
@@ -67,12 +67,16 @@ static char	*ft_readtxt(int fd, char *backup, char *buf)
 	{
 		temp = read(fd, buf, BUFFER_SIZE);
 		if (temp == -1)
-			return (0);
+		{
+			free(buf);
+			buf = NULL;
+			exit(EXIT_FAILURE);
+		}
 		if (!temp)
 			return (backup);
 		buf[temp] = '\0';
-		backup = ft_strjoin(backup, buf);
-		if (ft_strchr(backup, '\n') != 0)
+		backup = gnl_strjoin(backup, buf);
+		if (gnl_strchr(backup, '\n') != 0)
 			break ;
 	}
 	return (backup);
@@ -85,10 +89,10 @@ char	*get_next_line(int fd)
 	static char	*backup[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+		exit(EXIT_FAILURE);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (0);
+		exit(EXIT_FAILURE);
 	backup[fd] = ft_readtxt(fd, backup[fd], buf);
 	if (!backup[fd])
 	{
