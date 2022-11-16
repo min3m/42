@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:13:34 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/12 17:43:46 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:21:43 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	map_atoi(t_map **map, char **line_split, int y)
 	}
 }
 
-void	fill_map(int fd, t_map **map)
+void	fill_map(t_mlx *fdf, int fd, t_map **map)
 {
 	int		y;
 	char	*line;
@@ -61,21 +61,21 @@ void	fill_map(int fd, t_map **map)
 		if (!line_split)
 		{
 			free_all(line, line_split);
-			exit(ft_putendl_fd("Error : Split error", 1));
+			machine_exit(fdf, ft_putendl_fd("Error : Split error", 1));
 		}
 		(*map)->x_size = count_line(line_split);
 		(*map)->map[y] = (t_point *)malloc(sizeof(t_point) * (*map)->x_size);
 		if (!(*map)->map[y])
 		{
 			free_all(line, line_split);
-			exit(ft_putendl_fd("Error : Malloc error", 1));
+			machine_exit(fdf, ft_putendl_fd("Error : Malloc error", 1));
 		}
 		map_atoi(map, line_split, y++);
 		free_all(line, line_split);
 	}
 }
 
-void	y_malloc(int fd, t_map **map)
+void	y_malloc(t_mlx *fdf, int fd, t_map **map)
 {
 	char	*line;
 
@@ -89,26 +89,26 @@ void	y_malloc(int fd, t_map **map)
 	}
 	(*map)->map = (t_point **)malloc(sizeof(t_point *) * (*map)->y_size);
 	if (!((*map)->map))
-		exit(ft_putendl_fd("Error : Malloc error", 1));
+		machine_exit(fdf, ft_putendl_fd("Error : Malloc error", 1));
 }
 
-t_map	*read_map(int fd, char **argv)
+t_map	*read_map(t_mlx *fdf, int fd, char **argv)
 {
 	int		tmp;
 	t_map	*map;
 
 	map = malloc(sizeof(t_map));
 	if (!map)
-		exit(ft_putendl_fd("Error : Malloc error", 1));
-	y_malloc(fd, &map);
+		machine_exit(fdf, ft_putendl_fd("Error : Malloc error", 1));
+	y_malloc(fdf, fd, &map);
 	close(fd);
 	tmp = open(argv[1], O_RDONLY);
 	if (tmp < 0)
 	{
 		free(map);
-		exit(ft_putendl_fd("Error : File open error", 1));
+		machine_exit(fdf, ft_putendl_fd("Error : File open error", 1));
 	}
-	fill_map(tmp, &map);
+	fill_map(fdf, tmp, &map);
 	close(tmp);
 	return (map);
 }

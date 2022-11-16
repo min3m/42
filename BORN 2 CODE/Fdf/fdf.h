@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 17:14:31 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/12 19:27:18 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:21:21 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ typedef struct s_mlx
 
 int			main(int argc, char **argv);
 /* READ MAP */
-t_map		*read_map(int fd, char **argv);
-void		y_malloc(int fd, t_map **map);
+t_map		*read_map(t_mlx *fdf, int fd, char **argv);
+void		y_malloc(t_mlx *fdf, int fd, t_map **map);
 void		free_all(char *line, char **line_split);
-void		fill_map(int tmp, t_map **map);
+void		fill_map(t_mlx *fdf, int tmp, t_map **map);
 void		map_atoi(t_map **map, char **line_split, int y);
 /* MACHINE INIT */
 t_mlx		*machine_init(t_mlx *fdf, char *argv);
