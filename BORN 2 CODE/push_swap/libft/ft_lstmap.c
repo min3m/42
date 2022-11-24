@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 17:16:52 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/16 20:21:48 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:03:34 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list	*ft_lstmap(t_list *lst, t_data (*f)(t_data), void (*del)(t_data))
 			ft_lstclear(&new, del);
 			return (0);
 		}
-		ft_lstadd_back(&new, temp);
+		ft_lstadd_back(&new, temp, 0);
 		lst = lst->next;
 	}
 	return (new);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_argu.c                                       :+:      :+:    :+:   */
+/*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:01:40 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/16 16:49:33 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/23 21:39:17 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
-void	check_sorted(int argc, char **arr)
+void	check_sorted(char **arr)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ void	check_sorted(int argc, char **arr)
 	exit(EXIT_SUCCESS);
 }
 
-void	check_argu(int argc, char **arr)
+void	check_arg(char **arr)
 {
 	int	i;
 	int	j;
@@ -65,5 +65,5 @@ void	check_argu(int argc, char **arr)
 		}
 		i++;
 	}
-	check_sorted(argc, arr);
+	check_sorted(arr);
 }

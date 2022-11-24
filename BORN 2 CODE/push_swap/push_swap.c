@@ -6,13 +6,13 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:26:39 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/16 17:39:16 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/23 21:38:22 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**argu_init(char **argv)
+char	**arg_init(char **argv)
 {
 	int		i;
 	char	*str;
@@ -33,6 +33,8 @@ char	**argu_init(char **argv)
 	}
 	arr = ft_split(str, ' ');
 	free(str);
+	if (!arr)
+		exit(EXIT_FAILURE);
 	return (arr);
 }
 
@@ -50,11 +52,29 @@ int main(int argc, char **argv)
 			if (!(ft_strncmp(argv[i], "", ft_strlen(argv[i]))))
 				exit(ft_putendl_fd("Error", 1));
 		}
-		arr = argu_init(argv);
-		check_argu(argc, arr);
+		arr = arg_init(argv);
+		check_arg(arr);
 		stack = stack_init(arr);
+		sort_arg(stack);
 	}
-	else
-		ft_putendl_fd("Error", 1);
 	return (0);
 }
+// 		s_(stack, 'a');
+// 		p_(stack, 'b');
+// 		r_(stack, 'a');
+// 		rr_(stack, 'a');
+// 		p_(stack, 'b');
+// 		rr_(stack, 'b');
+// 		rr_(stack, 'b');
+// 		p_(stack, 'a');
+// 		p_(stack, 'b');
+// 		p_(stack, 'b');
+// 		p_(stack, 'b');
+// 		r_(stack, 'a');
+// 		rr_(stack, 'b');
+// for (t_list *curr = stack->stack_a ; curr != NULL ; curr=curr->next)
+// 			printf("%d->",curr->data.value);
+// 		printf("\n");
+// 		for (t_list *curr = stack->stack_b ; curr != NULL ; curr=curr->next)
+// 			printf("%d->",curr->data.value);
+// 		printf("\n");

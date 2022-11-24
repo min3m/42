@@ -6,7 +6,7 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 17:59:27 by youngmch          #+#    #+#              #
-#    Updated: 2022/11/15 12:39:39 by youngmch         ###   ########.fr        #
+#    Updated: 2022/11/22 17:43:00 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ $(NAME): $(OBJS)
 clean:
 		@$(RM) ./objs
 		@$(RM) ./objs/*.o
+		@$(RM) *.o
+		@$(RM) libft.a
 		@make fclean -C libft
 		@make clean -C mlx_mms
 

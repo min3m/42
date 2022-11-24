@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:18:16 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/15 15:37:30 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:15:08 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_isinteger(char *str)
 	sign = 1;
 	if (*str == '-' && str++)
 		sign = -1;
+	else if(*str == '+' && str++)
+		sign = 1;
 	while (*str)
 	{
 		if (!(ft_isdigit(*str)))

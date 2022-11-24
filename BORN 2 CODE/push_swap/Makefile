@@ -6,14 +6,14 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 12:37:50 by youngmch          #+#    #+#              #
-#    Updated: 2022/11/16 21:59:14 by youngmch         ###   ########.fr        #
+#    Updated: 2022/11/23 18:50:46 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFlAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-SRCS = push_swap.c check_argu.c stack_init.c
+SRCS = push_swap.c check_arg.c stack_init.c command.c command2.c utill.c utill2.c sort.c quick_sort.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -rf
 

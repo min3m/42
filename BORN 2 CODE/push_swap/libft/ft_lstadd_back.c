@@ -6,14 +6,14 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:19:43 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/16 21:57:26 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:15:17 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new, int flag)
 {
 	t_list	*temp;
 
@@ -25,7 +25,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	}
 	temp = *lst;
-	while (temp)
+	while (temp && flag)
 	{
 		if (temp->data.value > new->data.value)
 			temp->data.index++;
