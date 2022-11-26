@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:01:40 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/23 21:39:17 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:59:39 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_arg(char **arr)
 		}
 		while (arr[j])
 		{
-			if (!(ft_strcmp(arr[i],arr[j])))
+			if (!(ft_strcmp(arr[i], arr[j])))
 			{
 				free_arr(arr);
 				exit(ft_putendl_fd("Error", 1));

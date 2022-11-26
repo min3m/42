@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 22:15:46 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/21 21:47:57 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/26 21:36:37 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include "get_next_line_bonus.h"
 
 typedef struct s_data
 {
@@ -74,7 +75,7 @@ int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new, int flag);
 void	ft_lstdelone(t_list **stack, t_list *lst);
-void	ft_lstclear(t_list **lst, void (*del)(t_data));
+void	ft_lstclear(t_list **lst);
 void	ft_lstiter(t_list *lst, t_data (*f)(t_data));
 t_list	*ft_lstmap(t_list *lst, t_data (*f)(t_data), void (*del)(t_data));
 

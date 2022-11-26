@@ -1,0 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/26 21:11:59 by youngmch          #+#    #+#             */
+/*   Updated: 2022/11/26 22:07:22 by youngmch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	do_cmd(t_stack *stack, char *cmd)
+{
+	if (!ft_strcmp(cmd, "sa\n"))
+		bonus_s_(stack, 'a');
+	else if (!ft_strcmp(cmd, "sb\n"))
+		bonus_s_(stack, 'b');
+	else if (!ft_strcmp(cmd, "ss\n"))
+		bonus_s_(stack, 's');
+	else if (!ft_strcmp(cmd, "pa\n"))
+		bonus_p_(stack, 'a');
+	else if (!ft_strcmp(cmd, "pb\n"))
+		bonus_p_(stack, 'b');
+	else if (!ft_strcmp(cmd, "ra\n"))
+		bonus_r_(stack, 'a');
+	else if (!ft_strcmp(cmd, "rb\n"))
+		bonus_r_(stack, 'b');
+	else if (!ft_strcmp(cmd, "rr\n"))
+		bonus_r_(stack, 'r');
+	else if (!ft_strcmp(cmd, "rra\n"))
+		bonus_rr_(stack, 'a');
+	else if (!ft_strcmp(cmd, "rrb\n"))
+		bonus_rr_(stack, 'b');
+	else if (!ft_strcmp(cmd, "rrr\n"))
+		bonus_rr_(stack, 'r');
+	else
+		exit_push_swap(stack, EXIT_FAILURE);
+}
+
+void	run_checker(t_stack *stack)
+{
+	char	*cmd;
+
+	cmd = get_next_line(STDIN_FILENO);
+	if (!cmd)
+		return ;
+	while (cmd)
+	{
+		do_cmd(stack, cmd);
+		free(cmd);
+		cmd = get_next_line(STDIN_FILENO);
+		if (!cmd)
+			return ;
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	int		i;
+	char	**arr;
+	t_stack	*stack;
+
+	i = -1;
+	if (argc >= 2)
+	{
+		while (argv[++i])
+		{
+			if (!(ft_strncmp(argv[i], "", ft_strlen(argv[i]))))
+				exit(ft_putendl_fd("Error", 1));
+		}
+		arr = arg_init(argv);
+		check_arg(arr);
+		stack = stack_init(arr);
+		run_checker(stack);
+	}
+	return (0);
+}

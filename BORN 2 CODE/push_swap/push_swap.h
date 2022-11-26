@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:26:51 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/24 20:02:48 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/26 22:08:47 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	b_to_a(t_stack *stack, int num);
 t_count	sort_index_a(t_stack *stack, int index, t_count count, t_pivot pivot);
 t_count	sort_index_b(t_stack *stack, int index, t_count count, t_pivot pivot);
 /* UTILL */
+void	exit_push_swap(t_stack *stack, int result);
 int		ft_push(t_list **stack, t_list *new, int flag);
 t_list	*ft_pop(t_list **stack, int index);
 /* UTILL2 */
@@ -72,5 +73,16 @@ t_pivot	set_p(t_list *stack, int count);
 int		ft_find_max(t_list *stack, int count);
 int		ft_find_min(t_list *stack, int count);
 void	re_wind(t_stack *stack, int ra, int rb);
+/* BONUS */
+void	run_checker(t_stack *stack);
+void	do_cmd(t_stack *stack, char *cmd);
+/* BONUS CMD */
+void	bonus_s_(t_stack *stack, char c);
+void	bonus_p_(t_stack *stack, char c);
+void	bonus_r_(t_stack *stack, char c);
+void	bonus_rr_(t_stack *stack, char c);
+void	bonus_ss(t_stack *stack);
+void	bonus_rr(t_stack *stack);
+void	bonus_rrr(t_stack *stack);
 
 #endif

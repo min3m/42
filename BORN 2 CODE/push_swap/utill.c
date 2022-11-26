@@ -6,11 +6,21 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:19:08 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/24 16:17:05 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/26 21:44:24 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	exit_push_swap(t_stack *stack, int result)
+{
+	ft_lstclear(&(stack->stack_a));
+	ft_lstclear(&(stack->stack_b));
+	if (result == 0)
+		exit(EXIT_SUCCESS);
+	else
+		exit(EXIT_FAILURE);
+}
 
 int	ft_push(t_list **stack, t_list *new, int flag)
 {

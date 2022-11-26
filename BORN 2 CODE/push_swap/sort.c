@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:23:28 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/24 20:23:16 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/26 17:01:34 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	sort_two(t_stack *stack, int num, char c)
 		{
 			if (stack->stack_b->data.index < stack->stack_b->next->data.index)
 				s_(stack, 'b');
-			p_(stack,'a');
-			p_(stack,'a');
+			p_(stack, 'a');
+			p_(stack, 'a');
 		}
 		else if (num == 1)
-			p_(stack,'a');
+			p_(stack, 'a');
 	}
 }
 

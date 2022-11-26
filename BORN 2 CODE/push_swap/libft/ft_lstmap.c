@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 17:16:52 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/18 15:03:34 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/26 20:19:39 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_list	*ft_lstmap(t_list *lst, t_data (*f)(t_data), void (*del)(t_data))
 		temp = ft_lstnew(f(lst->data));
 		if (!(temp))
 		{
-			ft_lstclear(&new, del);
+			ft_lstclear(&new);
 			return (0);
 		}
 		ft_lstadd_back(&new, temp, 0);

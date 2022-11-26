@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 16:12:39 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/18 16:03:31 by youngmch         ###   ########.fr       */
+/*   Created: 2022/11/26 21:21:38 by youngmch          #+#    #+#             */
+/*   Updated: 2022/11/26 21:21:58 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,34 @@ t_stack	*stack_init(char **arr)
 		i++;
 	}
 	free_arr(arr);
-	// t_list *curr;
-	// for (curr = stack->stack_a ; curr != NULL ; curr=curr->next)
-	// 		printf("%d ",curr->data.index);
 	return (stack);
+}
+
+char	**arg_init(char **argv)
+{
+	int		i;
+	char	*str;
+	char	*tmp;
+	char	**arr;
+
+	i = 1;
+	str = ft_strdup("");
+	while (argv[i])
+	{
+		tmp = str;
+		str = ft_strjoin(str, argv[i++]);
+		if (!str)
+			exit(EXIT_FAILURE);
+		free(tmp);
+		tmp = str;
+		str = ft_strjoin(str, " ");
+		if (!str)
+			exit(EXIT_FAILURE);
+		free(tmp);
+	}
+	arr = ft_split(str, ' ');
+	free(str);
+	if (!arr)
+		exit(EXIT_FAILURE);
+	return (arr);
 }

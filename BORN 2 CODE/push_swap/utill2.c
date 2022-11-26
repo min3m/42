@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:59:43 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/24 21:03:22 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/26 16:59:00 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,12 @@ int	ft_find_max(t_list *stack, int count)
 	return (max);
 }
 
-t_pivot set_p(t_list *stack, int count)
+t_pivot	set_p(t_list *stack, int count)
 {
 	t_pivot	pivot;
 
 	pivot.s = ft_find_max(stack, count) - (count / 3) * 2;
 	pivot.b = ft_find_max(stack, count) - (count / 3);
-
 	return (pivot);
 }
 
