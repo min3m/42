@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:36:16 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/26 22:09:59 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:51:35 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 # include <stddef.h>
 # include <limits.h>
 
-#ifndef BUFFER_SIZE
 # define BUFFER_SIZE 2048
-#endif
 
 char	*get_next_line(int fd);
 size_t	gnl_strlen(const char *str);

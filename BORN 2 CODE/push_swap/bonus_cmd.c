@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:55:53 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/27 16:02:56 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:51:43 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,3 @@ void	bonus_rr_(t_stack *stack, char c)
 		ft_push(&(stack->stack_b), temp, 4);
 	}
 }
-
