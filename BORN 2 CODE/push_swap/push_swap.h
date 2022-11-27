@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:26:51 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/26 22:08:47 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:28:06 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
 # include "libft/libft.h"
 
@@ -76,6 +75,7 @@ void	re_wind(t_stack *stack, int ra, int rb);
 /* BONUS */
 void	run_checker(t_stack *stack);
 void	do_cmd(t_stack *stack, char *cmd);
+void	bonus_check_arg(char **arr);
 /* BONUS CMD */
 void	bonus_s_(t_stack *stack, char c);
 void	bonus_p_(t_stack *stack, char c);

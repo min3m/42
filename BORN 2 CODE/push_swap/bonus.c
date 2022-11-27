@@ -6,11 +6,27 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:11:59 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/26 22:07:22 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:24:27 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	sorted_bonus(t_stack *stack)
+{
+	t_list	*curr;
+
+	if (ft_lstsize(stack->stack_b))
+		return (0);
+	curr = stack->stack_a;
+	while (curr->next)
+	{
+		if (curr->data.index > curr->next->data.index)
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
+}
 
 void	do_cmd(t_stack *stack, char *cmd)
 {
@@ -37,7 +53,7 @@ void	do_cmd(t_stack *stack, char *cmd)
 	else if (!ft_strcmp(cmd, "rrr\n"))
 		bonus_rr_(stack, 'r');
 	else
-		exit_push_swap(stack, EXIT_FAILURE);
+		exit_push_swap(stack, ft_putendl_fd("Error", 1));
 }
 
 void	run_checker(t_stack *stack)
@@ -45,16 +61,16 @@ void	run_checker(t_stack *stack)
 	char	*cmd;
 
 	cmd = get_next_line(STDIN_FILENO);
-	if (!cmd)
-		return ;
 	while (cmd)
 	{
 		do_cmd(stack, cmd);
 		free(cmd);
 		cmd = get_next_line(STDIN_FILENO);
-		if (!cmd)
-			return ;
 	}
+	if (sorted_bonus(stack))
+		write(1, "OK\n", 4);
+	else
+		write(1, "KO\n", 4);
 }
 
 int	main(int argc, char **argv)
@@ -72,9 +88,10 @@ int	main(int argc, char **argv)
 				exit(ft_putendl_fd("Error", 1));
 		}
 		arr = arg_init(argv);
-		check_arg(arr);
+		bonus_check_arg(arr);
 		stack = stack_init(arr);
 		run_checker(stack);
+		exit_push_swap(stack, EXIT_SUCCESS);
 	}
 	return (0);
 }
