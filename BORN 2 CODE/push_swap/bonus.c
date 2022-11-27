@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:11:59 by youngmch          #+#    #+#             */
-/*   Updated: 2022/11/27 16:24:27 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:32:29 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	run_checker(t_stack *stack)
 		cmd = get_next_line(STDIN_FILENO);
 	}
 	if (sorted_bonus(stack))
-		write(1, "OK\n", 4);
+		ft_putendl_fd("OK", 1);
 	else
-		write(1, "KO\n", 4);
+		ft_putendl_fd("KO", 1);
 }
 
 int	main(int argc, char **argv)
