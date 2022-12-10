@@ -6,13 +6,13 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 12:37:50 by youngmch          #+#    #+#              #
-#    Updated: 2022/11/27 16:24:57 by youngmch         ###   ########.fr        #
+#    Updated: 2022/11/27 18:17:10 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
-CFlAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFlAGS = -Wall -Wextra -Werror
 SRCS = push_swap.c init.c check_arg.c command.c command2.c utill.c utill2.c sort.c quick_sort.c
 SRCS_BONUS = bonus.c init.c bonus_check_arg.c check_arg.c bonus_cmd.c utill.c
 
