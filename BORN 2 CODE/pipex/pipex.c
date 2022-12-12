@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 21:44:21 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:23:21 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:51:42 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
 {
 	int	pid;
 
-	if(pipe(pipex->fd) == -1)
+	if (pipe(pipex->fd) == -1)
 		exit_program("Pipe error", PERROR, EXIT_FAILURE);
 	pid = fork();
 	if (pid == 0)
@@ -85,7 +85,6 @@ void	do_pipex(int start, int argc, char **argv, t_pipex *pipex)
 
 int	main(int argc, char **argv)
 {
-	int	i = 0;
 	t_pipex	pipex;
 	pid_t	pid;
 
@@ -94,7 +93,7 @@ int	main(int argc, char **argv)
 	pipex.infile = open(argv[0], O_RDONLY);
 	if (pipex.infile < 0)
 		exit_program(argv[0], PERROR, EXIT_FAILURE);
-	pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | NC, 0644);
+	pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (pipex.outfile < 0)
 		exit_program(argv[argc - 1], PERROR, EXIT_FAILURE);
 	pipex.path = find_path(argv, environ);

@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:42:09 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:01:39 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:53:24 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define PERROR 0
 # define ERROR 1
 
-typedef struct	s_pipex
+typedef struct s_pipex
 {
 	int		fd[2];
 	int		infile;
@@ -45,7 +45,6 @@ void	do_execve(char *cmd, char **cmd_split);
 void	free_split(char **cmd_split, char **path);
 void	exit_program(char *message, int error, int status);
 void	close_fd(int fd);
-
 
 extern char	**environ;
 

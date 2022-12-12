@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:41:01 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:38:59 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:53:01 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
 {
 	int	pid;
 
-	if(pipe(pipex->fd) == -1)
+	if (pipe(pipex->fd) == -1)
 		exit_program("Pipe error", PERROR, EXIT_FAILURE);
 	pid = fork();
 	if (pid == 0)
@@ -107,7 +107,6 @@ void	do_pipex(int start, int argc, char **argv, t_pipex *pipex)
 
 int	main(int argc, char **argv)
 {
-	int	i = 0;
 	t_pipex	pipex;
 	pid_t	pid;
 
