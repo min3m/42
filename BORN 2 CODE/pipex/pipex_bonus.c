@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 21:44:21 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:23:21 by youngmch         ###   ########.fr       */
+/*   Created: 2022/12/12 16:41:01 by youngmch          #+#    #+#             */
+/*   Updated: 2022/12/12 20:38:59 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	execve_program(char *argv_cmd, t_pipex *pipex)
 {
@@ -35,6 +35,26 @@ void	execve_program(char *argv_cmd, t_pipex *pipex)
 	exit_program("command not exist", ERROR, EXIT_FAILURE);
 }
 
+void	is_here_doc(char **argv, t_pipex pipex)
+{
+	int		here_doc_fd;
+	char	*limiter;
+	char	*line;
+
+	here_doc_fd = open(argv[1], O_CREAT | O_RDWR, 0644);
+	line = get_next_line(STDIN_FILENO);
+	limiter = ft_strjoin(argv[2], "\n");
+	while (ft_strcmp(line, limiter))
+	{
+		free(line);
+		ft_putstr_fd(line, here_doc_fd);
+		line = get_next_line(STDIN_FILENO);
+	}
+	free(limiter);
+	free(line);
+	close_fd(here_doc_fd);
+}
+
 void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
 {
 	int	pid;
@@ -47,8 +67,8 @@ void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
 		if (!is_last)
 		{
 			dup2(pipex->fd[1], STDOUT_FILENO);
-			close(pipex->fd[0]);
-			close(pipex->fd[1]);
+			close_fd(pipex->fd[0]);
+			close_fd(pipex->fd[1]);
 		}
 		execve_program(argv, pipex);
 	}
@@ -57,8 +77,8 @@ void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
 		if (is_last)
 			pipex->lst_pid = pid;
 		dup2(pipex->fd[0], STDIN_FILENO);
-		close(pipex->fd[0]);
-		close(pipex->fd[1]);
+		close_fd(pipex->fd[0]);
+		close_fd(pipex->fd[1]);
 	}
 }
 
@@ -68,12 +88,12 @@ void	do_pipex(int start, int argc, char **argv, t_pipex *pipex)
 	int	status;
 
 	dup2(pipex->infile, STDIN_FILENO);
-	close(pipex->infile);
+	close_fd(pipex->infile);
 	i = start;
 	while (i < argc - 2)
 		pipe_and_fork(argv[i++], pipex, 0);
 	dup2(pipex->outfile, STDOUT_FILENO);
-	close(pipex->outfile);
+	close_fd(pipex->outfile);
 	pipe_and_fork(argv[i], pipex, 1);
 	while (i >= start)
 	{
@@ -81,6 +101,8 @@ void	do_pipex(int start, int argc, char **argv, t_pipex *pipex)
 			pipex->lst_status = status;
 		i--;
 	}
+	if (pipex->is_heredoc)
+		unlink(argv[1]);
 }
 
 int	main(int argc, char **argv)
@@ -89,15 +111,23 @@ int	main(int argc, char **argv)
 	t_pipex	pipex;
 	pid_t	pid;
 
-	if (argc != 5)
+	pipex.is_heredoc = 0;
+	if (!ft_strcmp(argv[1], "here_doc"))
+		pipex.is_heredoc = 1;
+	if (argc < 5 + pipex.is_heredoc)
 		exit_program("Wrong argument", ERROR, EXIT_FAILURE);
+	if (pipex.is_heredoc == 1)
+		is_here_doc(argv, pipex);
 	pipex.infile = open(argv[0], O_RDONLY);
 	if (pipex.infile < 0)
 		exit_program(argv[0], PERROR, EXIT_FAILURE);
-	pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | NC, 0644);
+	if (pipex.is_heredoc)
+		pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND, 0644);
+	else
+		pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (pipex.outfile < 0)
 		exit_program(argv[argc - 1], PERROR, EXIT_FAILURE);
 	pipex.path = find_path(argv, environ);
-	do_pipex(2, argc, argv, &pipex);
+	do_pipex(2 + pipex.is_heredoc, argc, argv, &pipex);
 	return (0);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 18:36:36 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:01:46 by youngmch         ###   ########.fr       */
+/*   Created: 2022/12/12 16:42:09 by youngmch          #+#    #+#             */
+/*   Updated: 2022/12/12 20:01:39 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <fcntl.h>
 # include <sys/wait.h>
@@ -30,11 +30,13 @@ typedef struct	s_pipex
 	int		outfile;
 	int		lst_pid;
 	int		lst_status;
+	int		is_heredoc;
 	pid_t	pid;
 	char	**path;
 	char	*path_cmd;
 }				t_pipex;
 
+void	is_here_doc(char **argv, t_pipex pipex);
 void	do_pipex(int start, int argc, char **argv, t_pipex *pipex);
 void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last);
 void	execve_program(char *argv_cmd, t_pipex *pipex);
