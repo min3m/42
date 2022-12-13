@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:42:09 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:53:24 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:41:28 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define PERROR 0
 # define ERROR 1
+# define PUTSTR 2
+# define COMMAND_NOT_FOUND 127
 
 typedef struct s_pipex
 {

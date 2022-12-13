@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:08:20 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:51:16 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:12:32 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	close_fd(int fd)
 {
 	if (close(fd) == -1)
-		exit_program("close", PERROR, EXIT_FAILURE);
+		exit_program("close()", PERROR, EXIT_FAILURE);
 }
 
 void	do_execve(char *cmd, char **cmd_split)
 {
 	execve(cmd, cmd_split, environ);
-	exit_program("execve", PERROR, EXIT_FAILURE);
+	exit_program(cmd, PERROR, EXIT_FAILURE);
 }
 
 void	free_split(char **cmd_split, char **path)
@@ -56,6 +56,8 @@ char	**find_path(char **argv, char **envp)
 	while (!ft_strnstr(envp[i], "PATH", ft_strlen(envp[i])))
 		i++;
 	path = ft_split(envp[i] + 5, ':');
+	if (!path)
+		exit_program("ft_split error", PUTSTR, EXIT_FAILURE);
 	i = 0;
 	return (path);
 }

@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:41:01 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:53:01 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:16:23 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	execve_program(char *argv_cmd, t_pipex *pipex)
 			do_execve(pipex->path_cmd, cmd_split);
 		free(pipex->path_cmd);
 	}
+	ft_putstr_fd(cmd_split[0], STDERR_FILENO);
 	free_split(cmd_split, pipex->path);
-	exit_program("command not exist", ERROR, EXIT_FAILURE);
+	exit_program(": command not found\n", PUTSTR, COMMAND_NOT_FOUND);
 }
 
 void	is_here_doc(char **argv, t_pipex pipex)
@@ -60,8 +61,10 @@ void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
 	int	pid;
 
 	if (pipe(pipex->fd) == -1)
-		exit_program("Pipe error", PERROR, EXIT_FAILURE);
+		exit_program("pipe()", PERROR, EXIT_FAILURE);
 	pid = fork();
+	if (pid == -1)
+		exit_program("fork()", PERROR, EXIT_FAILURE);
 	if (pid == 0)
 	{
 		if (!is_last)
@@ -111,15 +114,17 @@ int	main(int argc, char **argv)
 	pid_t	pid;
 
 	pipex.is_heredoc = 0;
+	if (argc < 5)
+		exit_program("Wrong argument", PUTSTR, EXIT_FAILURE);
 	if (!ft_strcmp(argv[1], "here_doc"))
 		pipex.is_heredoc = 1;
 	if (argc < 5 + pipex.is_heredoc)
-		exit_program("Wrong argument", ERROR, EXIT_FAILURE);
+		exit_program("Wrong argument", PUTSTR, EXIT_FAILURE);
 	if (pipex.is_heredoc == 1)
 		is_here_doc(argv, pipex);
-	pipex.infile = open(argv[0], O_RDONLY);
+	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
-		exit_program(argv[0], PERROR, EXIT_FAILURE);
+		perror(argv[1]);
 	if (pipex.is_heredoc)
 		pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND, 0644);
 	else
@@ -128,5 +133,5 @@ int	main(int argc, char **argv)
 		exit_program(argv[argc - 1], PERROR, EXIT_FAILURE);
 	pipex.path = find_path(argv, environ);
 	do_pipex(2 + pipex.is_heredoc, argc, argv, &pipex);
-	return (0);
+	return ((pipex.lst_status >> 8) & 0xFF);
 }

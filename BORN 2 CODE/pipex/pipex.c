@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 21:44:21 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/12 20:51:42 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:46:20 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	execve_program(char *argv_cmd, t_pipex *pipex)
 			do_execve(pipex->path_cmd, cmd_split);
 		free(pipex->path_cmd);
 	}
+	ft_putstr_fd(cmd_split[0], STDERR_FILENO);
 	free_split(cmd_split, pipex->path);
-	exit_program("command not exist", ERROR, EXIT_FAILURE);
+	exit_program(": command not found\n", PUTSTR, COMMAND_NOT_FOUND);
 }
 
 void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
@@ -40,8 +41,10 @@ void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
 	int	pid;
 
 	if (pipe(pipex->fd) == -1)
-		exit_program("Pipe error", PERROR, EXIT_FAILURE);
+		exit_program("pipe()", PERROR, EXIT_FAILURE);
 	pid = fork();
+	if (pid == -1)
+		exit_program("fork()", PERROR, EXIT_FAILURE);
 	if (pid == 0)
 	{
 		if (!is_last)
@@ -89,14 +92,14 @@ int	main(int argc, char **argv)
 	pid_t	pid;
 
 	if (argc != 5)
-		exit_program("Wrong argument", ERROR, EXIT_FAILURE);
-	pipex.infile = open(argv[0], O_RDONLY);
+		exit_program("Wrong argument", PUTSTR, EXIT_FAILURE);
+	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
-		exit_program(argv[0], PERROR, EXIT_FAILURE);
+		perror(argv[1]);
 	pipex.outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (pipex.outfile < 0)
 		exit_program(argv[argc - 1], PERROR, EXIT_FAILURE);
 	pipex.path = find_path(argv, environ);
 	do_pipex(2, argc, argv, &pipex);
-	return (0);
+	return ((pipex.lst_status >> 8) & 0xFF);
 }
