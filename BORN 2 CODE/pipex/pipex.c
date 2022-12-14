@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 21:44:21 by youngmch          #+#    #+#             */
-/*   Updated: 2022/12/13 19:46:20 by youngmch         ###   ########.fr       */
+/*   Updated: 2022/12/14 14:09:39 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	execve_program(char *argv_cmd, t_pipex *pipex)
 	}
 	ft_putstr_fd(cmd_split[0], STDERR_FILENO);
 	free_split(cmd_split, pipex->path);
-	exit_program(": command not found\n", PUTSTR, COMMAND_NOT_FOUND);
+	exit_program(": command not found", PUTSTR, COMMAND_NOT_FOUND);
 }
 
 void	pipe_and_fork(char *argv, t_pipex *pipex, int is_last)
