@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyoki <dongyoki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:57:40 by dongyoki          #+#    #+#             */
-/*   Updated: 2022/12/03 12:18:26 by dongyoki         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:02:33 by youngmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ ssize_t	del_file(t_manage **lst, int fd)
 {
 	t_manage	*file;
 	t_manage	*pre;
-	t_manage	*tmp;
+	// t_manage	*tmp;
 
-	tmp = *lst;
+	// tmp = *lst;
 	file = *lst;
 	pre = 0;
 	while (file && (file->fd) != fd)
