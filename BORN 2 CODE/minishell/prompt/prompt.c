@@ -76,6 +76,7 @@ char	*get_prompt_line(char *line)
 			line = ft_strjoin_free(line, curr->data + 5);
 			if (!line)
 				return (0);
+			break ;
 		}
 		curr = curr->next;
 	}
