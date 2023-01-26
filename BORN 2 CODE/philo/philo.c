@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopher.h                                      :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 22:10:14 by youngmch          #+#    #+#             */
-/*   Updated: 2023/01/16 22:15:45 by youngmch         ###   ########.fr       */
+/*   Created: 2023/01/16 22:09:24 by youngmch          #+#    #+#             */
+/*   Updated: 2023/01/21 18:02:10 by youngmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "philo.h"
+
+int	main(int argc, char **argv)
+{
+	if (argc != 5 && argc != 6)
+		return(ft_putendl_fd("Require 5 or 6 argument!"));
+	return (0);
+}
