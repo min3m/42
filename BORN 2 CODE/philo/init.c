@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 22:09:24 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/01 20:29:34 by youngmin         ###   ########.fr       */
+/*   Created: 2023/01/31 18:33:57 by youngmin          #+#    #+#             */
+/*   Updated: 2023/02/01 20:37:57 by youngmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+static bool	init_arg(t_arg *arg, char **argv)
 {
-	t_arg	arg;
-
-	if (argc != 5 && argc != 6)
-		return(ft_putendl_fd("Require 5 or 6 argument!"));
-	memset(&arg, 0, sizeof(arg));
-	if (init_arg(&arg, argv))
-	return (0);
+	if (!ft_atoi(argv[1], arg->philo_num) || !ft_atoi(argv[2], arg->t_to_die)
+	 || !ft_atoi(argv[3], arg->t_to_eat) || !ft_atoi(argv[4], arg->t_to_sleep))
 }
