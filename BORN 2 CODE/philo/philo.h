@@ -6,7 +6,7 @@
 /*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:10:14 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/01 20:58:08 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/01 21:22:08 by youngmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <pthread.h>
 #include <stdlib.h>
 #include <sys/time.h>
