@@ -6,7 +6,7 @@
 /*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:10:14 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/01 21:22:08 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:29:26 by youngmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,14 @@ typedef struct s_arg{
 	int	t_to_sleep;
 	int	min_eat_times;
 }				t_arg;
+
+typedef struct s_philo
+{
+	int	philo_num;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	min_count;
+}				t_philo;
 
 #endif
