@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 21:55:23 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/01 20:39:58 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:12:29 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_isdigit(int c)
+static int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
