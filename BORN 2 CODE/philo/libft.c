@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 21:55:23 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/04 16:12:29 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:31:53 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_isspace(const char *nptr, int i)
 	return (i);
 }
 
-static bool	ft_atoi(const char *nptr, int *num)
+static bool	matoi(const char *nptr, int *num)
 {
 	int	sign;
 	int	i;
