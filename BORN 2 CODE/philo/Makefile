@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+         #
+#    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:16:09 by youngmin          #+#    #+#              #
-#    Updated: 2023/01/31 16:54:01 by youngmin         ###   ########.fr        #
+#    Updated: 2023/02/06 18:43:41 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,11 @@
 
 NAME = philo
 
-# FT = ./libft/libft.a
-# FTCC = -L./libft -lft
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror $(DB)
 DB = -g3
 FA = -fsanitize=address
+TFLAG = -lpthread
 AR = ar
 ARFLAG = ruc
 RM = rm -f
@@ -83,7 +81,7 @@ endef
 all : $(NAME)
 
 $(NAME) : $(objects_goal)
-	@$(CC) $(CFLAGS) -o $@ $(objects_goal)
+	@$(CC) $(CFLAGS) $(TFLAG) -o $@ $(objects_goal)
 	@echo "$(DELINE) $(MAGENTA)$@ $(RESET) is compiled $(GREEN)$(BOLD) OK ✅ $(RESET)"
 
 bonus : $(NAME)
@@ -93,9 +91,6 @@ $(object_dir)/%.o : %.c
 	@mkdir -p $(object_dir)/$(dir $^)
 	@$(CC) $(CFLAGS) -c $^ -o $@
 	@echo " $(MAGENTA)$(NAME) $(RESET)objects file compiling... $(DELINE)$(GREEN) $^ $(RESET)$(CURSUP)"
-
-$(FT) :
-	@make -C ./libft all
 
 clean :
 	@$(RM) $(all_objects)

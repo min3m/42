@@ -18,21 +18,32 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <memory.h>
+# include <limits.h>
 
 /* libft.c */
 
 static int	ft_isspace(const char *nptr, int i);
-static bool	ft_atoi(const char *nptr, int *num);
+static bool	matoi(const char *nptr, int *num);
 static int	ft_putendl_fd(char *s, int fd);
 static int	ft_isdigit(int c);
 
 typedef struct s_arg
 {
-	int	philo_num;
-	int	t_to_die;
-	int	t_to_eat;
-	int	t_to_sleep;
-	int	min_eat_times;
+	int				philo_num;
+	int				t_to_die;
+	int				t_to_eat;
+	int				t_to_sleep;
+	int				min_eat_times;
+	pthread_mutex_t	*forks;
 }				t_arg;
+
+typedef struct s_philo
+{
+	pthread_t	tid ;
+	int			philo_id;
+	int			left_f;
+	int			right_f;
+}				t_philo;
+
 
 #endif

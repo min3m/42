@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 21:55:23 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/04 16:31:53 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:30:47 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,26 @@ static int	ft_isspace(const char *nptr, int i)
 
 static bool	matoi(const char *nptr, int *num)
 {
-	int	sign;
-	int	i;
+	int		i;
+	size_t	temp;
 
-	sign = -1;
+	temp = (size_t)(*num);
 	i = ft_isspace(nptr, 0);
 	if (nptr[i] == '+' || nptr[i] == '-')
 	{
 		if (nptr[i] == '-')
-			sign *= -1;
+			return (false);
 		i++;
 	}
-	if (!ft_is_digit(nptr[i]))
-		return (false);
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (ft_is_digit(nptr[i]))
 	{
-		*num = *num * 10 - (nptr[i] - '0');
+		temp = temp * 10 + (nptr[i] - '0');
 		i++;
+		if (temp > INT_MAX)
+			return (false);
 	}
 	if (nptr[i])
 		return (false);
-	*num = *num * sign;
+	*num = (int)temp;
 	return (true);
 }
