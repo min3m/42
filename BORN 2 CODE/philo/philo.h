@@ -39,10 +39,11 @@ typedef struct s_arg
 
 typedef struct s_philo
 {
-	pthread_t	tid ;
+	t_arg		arg;
+	pthread_t	tid;
 	int			philo_id;
-	int			left_f;
 	int			right_f;
+	int			left_f;
 }				t_philo;
 
 

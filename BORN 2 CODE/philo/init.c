@@ -6,11 +6,19 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:57 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/06 21:20:51 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:09:05 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static bool	init_philo(t_philo **philo, t_arg arg)
+{
+	*philo = malloc(sizeof(t_philo) * arg.philo_num);
+	if (!(*philo))
+		return (false);
+	return (true);
+}
 
 static bool	init_mutex(t_arg *arg)
 {
