@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:57 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/07 16:09:05 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:03:13 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,21 @@
 
 static bool	init_philo(t_philo **philo, t_arg arg)
 {
+	int	i;
+
+	i = -1;
 	*philo = malloc(sizeof(t_philo) * arg.philo_num);
 	if (!(*philo))
 		return (false);
+	while (++i < arg.philo_num)
+	{
+		(*philo)[i].arg = arg;
+		(*philo)[i].philo_id = i;
+		(*philo)[i].right_f = i;
+		(*philo)[i].left_f = (i + 1) % arg.philo_num;
+		(*philo)[i].died = 0;
+		(*philo)[i].last_eat_time = 0;
+	}
 	return (true);
 }
 
@@ -44,6 +56,7 @@ static bool	init_arg(t_arg *arg, char **argv)
 	if (arg->philo_num < 1 || arg->t_to_die <= 0 || arg->t_to_eat <= 0
 		|| arg->t_to_sleep <= 0)
 		return (false);
+	arg->start_time = get_ms_time();
 	if (argv[5])
 	{
 		if (!matoi(argv[5], arg->min_eat_times))

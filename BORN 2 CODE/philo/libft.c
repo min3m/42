@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 21:55:23 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/06 20:30:47 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:02:54 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,12 @@ static bool	matoi(const char *nptr, int *num)
 		return (false);
 	*num = (int)temp;
 	return (true);
+}
+
+uint64_t	get_ms_time(void)
+{
+	struct timeval	val;
+
+	gettimeofday(&val, NULL);
+	return (val.tv_sec * 1000 + val.tv_usec / 1000);
 }

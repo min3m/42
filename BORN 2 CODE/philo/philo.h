@@ -35,6 +35,7 @@ typedef struct s_arg
 	int				t_to_sleep;
 	int				min_eat_times;
 	pthread_mutex_t	*forks;
+	uint64_t		start_time;
 }				t_arg;
 
 typedef struct s_philo
@@ -44,7 +45,8 @@ typedef struct s_philo
 	int			philo_id;
 	int			right_f;
 	int			left_f;
+	int			died;
+	uint64_t	last_eat_time;
 }				t_philo;
-
 
 #endif
