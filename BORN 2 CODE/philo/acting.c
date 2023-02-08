@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:14:09 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/08 21:48:29 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:14:24 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,5 @@
 
 void	eating(t_philo *philo)
 {
+	pthread_mutex_lock(&(philo->arg.forks[philo->right_f]));
 }
