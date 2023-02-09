@@ -6,36 +6,41 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 21:55:23 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/08 21:02:54 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/09 21:37:05 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-static int	ft_putendl_fd(char *s, int fd)
+int	ft_putendl_fd(char *s, int fd)
 {
+	size_t	len;
+
+	len = 0;
 	if (!s)
 		return (0);
-	write(fd, s, ft_strlen(s));
+	while (s[len])
+		len++;
+	write(fd, s, len);
 	write(fd, "\n", 1);
 	return (1);
 }
 
-static int	ft_isspace(const char *nptr, int i)
+int	ft_isspace(const char *nptr, int i)
 {
 	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
 	return (i);
 }
 
-static bool	matoi(const char *nptr, int *num)
+bool	matoi(const char *nptr, int *num)
 {
 	int		i;
 	size_t	temp;
@@ -48,7 +53,7 @@ static bool	matoi(const char *nptr, int *num)
 			return (false);
 		i++;
 	}
-	while (ft_is_digit(nptr[i]))
+	while (ft_isdigit(nptr[i]))
 	{
 		temp = temp * 10 + (nptr[i] - '0');
 		i++;

@@ -6,7 +6,7 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:16:09 by youngmin          #+#    #+#              #
-#    Updated: 2023/02/06 18:43:41 by youngmch         ###   ########.fr        #
+#    Updated: 2023/02/09 21:32:08 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,10 @@ RED = \033[31m
 
 sources1 :=
 
-sources1 += ft_exit/error_parse.c
-sources1 += ft_exit/error_cmd.c
-sources1 += ft_exit/error_exe.c
-sources1 += ft_exit/error_prompt.c
-sources1 += ft_exit/error_builtin.c
+sources1 += philo.c
+sources1 += libft.c
+sources1 += init.c
+sources1 += acting.c
 
 # ---- Bonus ---- #
 

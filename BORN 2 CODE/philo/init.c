@@ -6,13 +6,13 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:57 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/08 21:03:13 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/09 21:40:29 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static bool	init_philo(t_philo **philo, t_arg arg)
+bool	init_philo(t_philo **philo, t_arg arg)
 {
 	int	i;
 
@@ -26,13 +26,14 @@ static bool	init_philo(t_philo **philo, t_arg arg)
 		(*philo)[i].philo_id = i;
 		(*philo)[i].right_f = i;
 		(*philo)[i].left_f = (i + 1) % arg.philo_num;
-		(*philo)[i].died = 0;
+		(*philo)[i].died = false;
 		(*philo)[i].last_eat_time = 0;
+		(*philo)[i].eat_times = 0;
 	}
 	return (true);
 }
 
-static bool	init_mutex(t_arg *arg)
+bool	init_mutex(t_arg *arg)
 {
 	int	i;
 
@@ -45,13 +46,18 @@ static bool	init_mutex(t_arg *arg)
 		if (pthread_mutex_init(&(arg->forks[i]), NULL))
 			return (false);
 	}
+	if (pthread_mutex_init(&(arg->print), NULL))
+		return (false);
+	if (pthread_mutex_init(&(arg->count), NULL))
+		return (false);
 	return (true);
 }
 
-static bool	init_arg(t_arg *arg, char **argv)
+bool	init_arg(t_arg *arg, char **argv)
 {
-	if (!matoi(argv[1], arg->philo_num) || !matoi(argv[2], arg->t_to_die)
-		|| !matoi(argv[3], arg->t_to_eat) || !matoi(argv[4], arg->t_to_sleep))
+	if (!matoi(argv[1], &(arg->philo_num)) || !matoi(argv[2], &(arg->t_to_die))
+		|| !matoi(argv[3], &(arg->t_to_eat))
+		|| !matoi(argv[4], &(arg->t_to_sleep)))
 		return (false);
 	if (arg->philo_num < 1 || arg->t_to_die <= 0 || arg->t_to_eat <= 0
 		|| arg->t_to_sleep <= 0)
@@ -59,7 +65,7 @@ static bool	init_arg(t_arg *arg, char **argv)
 	arg->start_time = get_ms_time();
 	if (argv[5])
 	{
-		if (!matoi(argv[5], arg->min_eat_times))
+		if (!matoi(argv[5], &(arg->min_eat_times)))
 			return (false);
 		if (arg->min_eat_times <= 0)
 			return (false);

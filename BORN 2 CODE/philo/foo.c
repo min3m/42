@@ -6,32 +6,40 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 21:05:04 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/08 20:14:43 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/09 21:18:32 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include <sys/time.h>
 
-int main(void){
-    struct timeval tv;
-    struct tm *ptm;
+typedef struct s_arg
+{
+    int i;
+}           t_arg;
 
-    gettimeofday(&tv, NULL);
-    ptm = localtime(&tv.tv_sec);
+typedef struct s_foo
+{
+    t_arg   arg;
+}           t_foo;
 
-    printf("%d.%d\n", tv.tv_sec, tv.tv_usec);
-    printf("%d05d-%02d-%02d %d02d:%02d:%02d.%06ld\n"
-            , ptm->tm_year + 1900
-            , ptm->tm_mon + 1
-            , ptm->tm_mday
-            , ptm->tm_hour
-            , ptm->tm_min
-            , ptm->tm_sec
-            , tv.tv_usec);
+int main(void)
+{
+    t_foo   *foo;
+    t_arg   *arg;
 
-    return 0;
+    foo = malloc(sizeof(t_foo) * 4);
+
+    arg = &(foo->arg);
+    for (int j = 0 ; j < 5; j++)
+        if (j == 0 || j == 1)
+            (*arg).i++;
+    printf("%d\n",(*arg).i);
+    for (int j = 0 ; j < 5 ; j++)
+        printf("%d ", foo->arg.i);
 }
 
 // #include <stdio.h>
