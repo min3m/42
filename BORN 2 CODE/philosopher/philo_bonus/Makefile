@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+         #
+#    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:16:09 by youngmin          #+#    #+#              #
-#    Updated: 2023/02/14 21:22:43 by youngmin         ###   ########.fr        #
+#    Updated: 2023/02/16 20:21:38 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,11 @@ RED = \033[31m
 
 sources1 :=
 
-sources1 += philo.c
-sources1 += libft.c
-sources1 += init.c
-sources1 += acting.c
-sources1 += monitor.c
+sources1 += philo_bonus.c
+sources1 += libft_bonus.c
+sources1 += init_bonus.c
+sources1 += acting_bonus.c
+sources1 += monitor_bonus.c
 
 # ---- Bonus ---- #
 

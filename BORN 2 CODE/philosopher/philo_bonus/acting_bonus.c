@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   acting_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:14:09 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/15 22:22:35 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:48:31 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	timer(int time)
 
 	target_time = get_ms_time() + (uint64_t)time;
 	while (target_time > get_ms_time())
-		usleep(200);
+		usleep(500);
 }
 
 void	print_philo(char *message, t_philo *philo)
@@ -39,21 +39,20 @@ void	print_philo(char *message, t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-	pthread_mutex_lock(&(philo->arg->forks[philo->right_f]));
+	sem_wait(philo->arg->forks);
 	print_philo("has taken fork", philo);
-	pthread_mutex_lock(&(philo->arg->forks[philo->left_f]));
+	sem_wait(philo->arg->forks);
 	print_philo("has taken fork", philo);
 	print_philo("is eating", philo);
 	timer(philo->arg->t_to_eat);
-	pthread_mutex_lock(&(philo->arg->last_time));
+	sem_wait(philo->arg->last_time);
 	philo->last_eat_time = get_ms_time();
-	pthread_mutex_unlock(&(philo->arg->last_time));
-	pthread_mutex_lock(&(philo->arg->count));
+	sem_post(philo->arg->last_time);
+	sem_wait(philo->arg->count);
 	philo->eat_times++;
-	pthread_mutex_unlock(&(philo->arg->count));
-	pthread_mutex_unlock(&(philo->arg->forks[philo->right_f]));
-	pthread_mutex_unlock(&(philo->arg->forks[philo->left_f]));
-	sleep_think(philo);
+	sem_post(philo->arg->count);
+	sem_post(philo->arg->forks);
+	sem_post(philo->arg->forks);
 }
 
 void	sleep_think(t_philo *philo)

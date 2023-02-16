@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:53:36 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/15 22:24:08 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:51:30 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -25,24 +25,24 @@
 # include <signal.h>
 # include <limits.h>
 
-# define DIED 10
-# define FULL 11
+# define DIED 0xfd
+# define FULL 0xfe
 
 typedef struct s_arg
 {
-	int				philo_num;
-	int				t_to_die;
-	int				t_to_eat;
-	int				t_to_sleep;
-	int				min_eat_times;
-	int				finished;
-	bool			died;
-	sem_t			*forks;
-	sem_t			*print;
-	sem_t			*count;
-	sem_t			*last_time;
-	sem_t			*check_died;
-	uint64_t		start_time;
+	int			philo_num;
+	int			t_to_die;
+	int			t_to_eat;
+	int			t_to_sleep;
+	int			min_eat_times;
+	int			finished;
+	bool		died;
+	sem_t		*forks;
+	sem_t		*print;
+	sem_t		*count;
+	sem_t		*last_time;
+	sem_t		*check_died;
+	uint64_t	start_time;
 }				t_arg;
 
 typedef struct s_philo
@@ -79,13 +79,13 @@ void		sleep_think(t_philo *philo);
 /* monitor.c */
 
 void		*philo_monitor(void *val);
-int			check_min_eat(t_arg *arg);
 int			check_die(t_philo *philo, t_arg *arg);
 
 /* philo.c */
 
 void		free_all(t_philo *philo);
-int			start_process(t_philo *philo, t_arg *arg);
-void		philo_problem(t_philo *philo, t_arg *arg);
+void		wait_process(t_philo *philo, t_arg *arg);
+void		philo_problem(t_philo *philo);
+void		start_process(t_philo *philo, t_arg *arg);
 
 #endif
