@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:14:09 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/16 21:48:31 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:33:29 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,11 @@ void	print_philo(char *message, t_philo *philo)
 {
 	uint64_t	now;
 
-	sem_wait(philo->arg->check_died);
+	sem_wait(philo->arg->print);
 	now = get_ms_time();
-	if (!(philo->arg->died))
-	{
-		sem_wait(philo->arg->print);
-		printf("[%llums] %d %s\n", now - philo->arg->start_time,
-			philo->philo_id, message);
-		sem_post(philo->arg->print);
-	}
-	sem_post(philo->arg->check_died);
+	printf("[%llums] %d %s\n", now - philo->arg->start_time,
+		philo->philo_id, message);
+	sem_post(philo->arg->print);
 }
 
 void	eating(t_philo *philo)

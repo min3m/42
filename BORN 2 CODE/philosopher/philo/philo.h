@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:53:36 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/14 20:54:02 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:03:29 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool		init_philo(t_philo **philo, t_arg *arg);
 
 void		timer(int time);
 void		print_philo(char *message, t_philo *philo);
-void		eating(t_philo *philo);
+bool		eating(t_philo *philo);
 void		sleep_think(t_philo *philo);
 
 /* monitor.c */
@@ -80,7 +80,7 @@ int			check_die(t_philo *philo, t_arg *arg);
 /* philo.c */
 
 void		free_all(t_philo *philo);
-int			start_thread(t_philo *philo, t_arg *arg);
 void		*philo_problem(void *val);
+int			start_thread(t_philo *philo, t_arg *arg);
 
 #endif

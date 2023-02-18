@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:53:36 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/16 20:51:30 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:33:55 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_arg
 	sem_t		*print;
 	sem_t		*count;
 	sem_t		*last_time;
-	sem_t		*check_died;
 	uint64_t	start_time;
 }				t_arg;
 
@@ -68,6 +67,7 @@ uint64_t	get_ms_time(void);
 bool		init_arg(t_arg *arg, char **argv);
 bool		init_sem(t_arg *arg);
 bool		init_philo(t_philo **philo, t_arg *arg);
+bool		init_philo_sem(t_philo **philo, t_arg *arg);
 
 /* acting.c */
 

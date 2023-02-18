@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:33:57 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/16 20:40:41 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:35:28 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ bool	init_sem(t_arg *arg)
 	arg->last_time = sem_open("last_time", O_CREAT, 0644, 1);
 	if (arg->last_time == SEM_FAILED)
 		return (false);
-	sem_unlink("check_died");
-	arg->check_died = sem_open("check_died", O_CREAT, 0644, 1);
-	if (arg->check_died == SEM_FAILED)
-		return (false);
 	return (true);
 }
 
@@ -65,7 +61,6 @@ bool	init_arg(t_arg *arg, char **argv)
 	if (arg->philo_num < 1 || arg->t_to_die <= 0 || arg->t_to_eat <= 0
 		|| arg->t_to_sleep <= 0)
 		return (false);
-	arg->start_time = get_ms_time();
 	if (argv[5])
 	{
 		if (!matoi(argv[5], &(arg->min_eat_times)))

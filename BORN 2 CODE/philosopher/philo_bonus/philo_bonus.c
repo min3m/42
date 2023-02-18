@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:09:24 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/16 21:56:20 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:00:03 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	free_all(t_philo *philo)
 	sem_close(philo->arg->print);
 	sem_close(philo->arg->count);
 	sem_close(philo->arg->last_time);
-	sem_close(philo->arg->check_died);
 	free(philo);
 }
 
@@ -33,6 +32,8 @@ void	wait_process(t_philo *philo, t_arg *arg)
 		waitpid(-1, &wstatus, 0);
 		if ((wstatus >> 8 & 0xff) == FULL)
 		{
+			sem_post(philo->arg->count);
+			sem_post(philo->arg->last_time);
 			if (i == philo->arg->philo_num - 1)
 				printf("[%llums] eating finished!\n",
 					get_ms_time() - arg->start_time);
@@ -59,7 +60,6 @@ void	philo_problem(t_philo *philo)
 		if (philo->arg->min_eat_times != 0 &&
 			philo->eat_times == philo->arg->min_eat_times)
 		{
-			sem_post(philo->arg->count);
 			sem_post(philo->arg->forks);
 			sem_post(philo->arg->forks);
 			exit(FULL);
@@ -74,6 +74,7 @@ void	start_process(t_philo *philo, t_arg *arg)
 	int	i;
 
 	i = -1;
+	arg->start_time = get_ms_time();
 	while (++i < philo->arg->philo_num)
 	{
 		philo[i].pid = fork();
@@ -84,8 +85,8 @@ void	start_process(t_philo *philo, t_arg *arg)
 		{
 			if (pthread_create(&(philo->tid), NULL, philo_monitor, &(philo[i])))
 				exit(ft_putendl_fd("Thread create error!", 1));
+			pthread_detach(philo->tid);
 			philo_problem(&(philo[i]));
-			pthread_join(philo->tid, NULL);
 		}
 	}
 	wait_process(philo, arg);

@@ -6,13 +6,13 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/29 17:16:09 by youngmin          #+#    #+#              #
-#    Updated: 2023/02/16 20:21:38 by youngmch         ###   ########.fr        #
+#    Updated: 2023/02/18 19:03:39 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ---- NAME ---- #
 
-NAME = philo
+NAME = philo_bonus
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror $(DB)

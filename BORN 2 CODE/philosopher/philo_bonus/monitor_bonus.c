@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:47:26 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/16 21:57:49 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:35:53 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	check_die(t_philo *philo, t_arg *arg)
 	sem_post(philo->arg->last_time);
 	if (died_time >= (uint64_t)arg->t_to_die)
 	{
-		print_philo("died", philo);
-		sem_wait(arg->check_died);
-		philo->arg->died = true;
-		sem_post(arg->check_died);
+		sem_wait(philo->arg->print);
+		printf("[%llums] %d died\n", now - philo->arg->start_time,
+			philo->philo_id);
 		return (1);
 	}
 	return (0);
@@ -44,15 +43,13 @@ void	*philo_monitor(void *val)
 		if (check_die(philo, arg))
 			exit(DIED);
 		sem_wait(philo->arg->count);
-		// if (philo->arg->min_eat_times != 0 &&
-		// 	philo->eat_times == philo->arg->min_eat_times)
-		// {
-		// 	sem_post(philo->arg->count);
-		// 	sem_post(philo->arg->forks);
-		// 	sem_post(philo->arg->forks);
-		// 	printf("%d\n",philo->philo_id);
-		// 	exit(FULL);
-		// }
+		if (philo->arg->min_eat_times != 0 &&
+			philo->eat_times == philo->arg->min_eat_times)
+		{
+			sem_post(philo->arg->forks);
+			sem_post(philo->arg->forks);
+			exit(FULL);
+		}
 		sem_post(philo->arg->count);
 	}
 	return (NULL);

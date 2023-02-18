@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:09:24 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/14 21:18:36 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:03:42 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,9 @@ void	*philo_problem(void *val)
 			break ;
 		}
 		pthread_mutex_unlock(&(philo_info->arg->check_died));
-		eating(philo_info);
-		pthread_mutex_lock(&(philo_info->arg->count));
-		if (philo_info->eat_times == philo_info->arg->min_eat_times)
-		{
-			philo_info->arg->finished++;
-			pthread_mutex_unlock(&(philo_info->arg->count));
+		if (eating(philo_info))
 			break ;
-		}
-		pthread_mutex_unlock(&(philo_info->arg->count));
+		sleep_think(philo_info);
 	}
 	return (NULL);
 }

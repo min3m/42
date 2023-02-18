@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   acting.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngmin <youngmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:14:09 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/14 20:05:46 by youngmin         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:03:15 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_philo(char *message, t_philo *philo)
 	pthread_mutex_unlock(&(philo->arg->check_died));
 }
 
-void	eating(t_philo *philo)
+bool	eating(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->arg->forks[philo->right_f]));
 	print_philo("has taken fork", philo);
@@ -53,7 +53,15 @@ void	eating(t_philo *philo)
 	pthread_mutex_unlock(&(philo->arg->count));
 	pthread_mutex_unlock(&(philo->arg->forks[philo->right_f]));
 	pthread_mutex_unlock(&(philo->arg->forks[philo->left_f]));
-	sleep_think(philo);
+	pthread_mutex_lock(&(philo->arg->count));
+	if (philo->eat_times == philo->arg->min_eat_times)
+	{
+		philo->arg->finished++;
+		pthread_mutex_unlock(&(philo->arg->count));
+		return (true);
+	}
+	pthread_mutex_unlock(&(philo->arg->count));
+	return (false);
 }
 
 void	sleep_think(t_philo *philo)
