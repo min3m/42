@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:47:26 by youngmin          #+#    #+#             */
-/*   Updated: 2023/02/18 20:35:53 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 21:11:35 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	*philo_monitor(void *val)
 		if (check_die(philo, arg))
 			exit(DIED);
 		sem_wait(philo->arg->count);
-		if (philo->arg->min_eat_times != 0 &&
-			philo->eat_times == philo->arg->min_eat_times)
+		if (philo->arg->min_eat_times != 0
+			&& philo->eat_times == philo->arg->min_eat_times)
 		{
 			sem_post(philo->arg->forks);
 			sem_post(philo->arg->forks);

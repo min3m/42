@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:09:24 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/18 20:00:03 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 21:11:48 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	philo_problem(t_philo *philo)
 	{
 		eating(philo);
 		sem_wait(philo->arg->count);
-		if (philo->arg->min_eat_times != 0 &&
-			philo->eat_times == philo->arg->min_eat_times)
+		if (philo->arg->min_eat_times != 0
+			&& philo->eat_times == philo->arg->min_eat_times)
 		{
 			sem_post(philo->arg->forks);
 			sem_post(philo->arg->forks);

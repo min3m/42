@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:14:09 by youngmch          #+#    #+#             */
-/*   Updated: 2023/02/16 20:03:15 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/02/18 21:44:26 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	timer(int time)
 
 	target_time = get_ms_time() + (uint64_t)time;
 	while (target_time > get_ms_time())
-		usleep(200);
+		usleep(500);
 }
 
 void	print_philo(char *message, t_philo *philo)
