@@ -236,7 +236,6 @@
 
 // 	print_op(x, op, y);
 // }
-#include <iostream>
 
 // struct Mystruct
 // {
@@ -279,23 +278,277 @@
 // 	sum_num(&ms);
 // 	return (0);
 // }
-int main()
-{
-	char	My_string[255];
+// #include <iostream>
+// int main()
+// {
+// 	char	My_string[255];
 
-	// std::cin >> My_string;
-	std::cin.getline(My_string, 255);
+// 	// std::cin >> My_string;
+// 	std::cin.getline(My_string, 255);
 
-	std::cout << My_string << std::endl;
-	int	x;
+// 	std::cout << My_string << std::endl;
+// 	int	x;
 
-	std::cin >> x;
-	int	*arr = new int[x]{1,2,3,4,5};
+// 	std::cin >> x;
+// 	int	*arr = new int[x]{1,2,3,4,5};
 
-	for (int i = 0; i < x ; i++)
-		std::cout << arr[i] << std::endl;
-	delete[] arr;
-	for (int i = 0; i < x ; i++)
-		std::cout << arr[i] << std::endl;
-	return (0);
-}
+// 	for (int i = 0; i < x ; i++)
+// 		std::cout << arr[i] << std::endl;
+// 	delete[] arr;
+// 	for (int i = 0; i < x ; i++)
+// 		std::cout << arr[i] << std::endl;
+// 	return (0);
+// }
+// 참조자의 사용
+// #include <iostream>
+// void	doSomething(const int &num)
+// {
+// 	// num = 10;
+// 	std::cout << num << std::endl;
+// 	std::cout << &num << std::endl;
+// }
+
+// int	main()
+// {
+// 	int	a = 5;
+// 	int &val = a;
+// 	int *ptr = &a;
+
+// 	std::cout << *ptr << std::endl;
+// 	std::cout << val << std::endl;
+// 	std::cout << &val << std::endl;
+
+// 	doSomething(a);
+// 	std::cout << a << std::endl;
+// 	std::cout << val << std::endl;
+// 	return (0);
+// }
+//std::array사용법
+// #include <iostream>
+// #include <limits>
+// #include <algorithm>
+
+// int main()
+// {
+// 	int array[] = {0,1,1,2,3,5,300,13,21,34,55,89};
+// 	int max_n;
+
+// 	max_n = std::numeric_limits<int>::lowest();
+// 	for (const int &n : array)
+// 		max_n = std::max(max_n, n);
+
+// 	std::cout << max_n << std::endl;
+// 	// for (int number : array)
+// 	// 	std::cout << number << std::endl;
+// 	return (0);
+// }
+//recursive 함수 / 피보나치
+// #include <iostream>
+
+// int	fibonacci(int count)
+// {
+// 	if (count <= 1)
+// 		return (0);
+// 	else if (count == 2)
+// 		return (1);
+// 	else
+// 		return fibonacci(count - 1) + fibonacci(count - 2);
+// }
+
+// int	main()
+// {
+// 	for (int i = 1; i <= 11; i++)
+// 		std::cout << fibonacci(i) << std::endl;
+// 	return (0);
+// }
+// 캡슐화!!! 하는 법과 이유!
+// #include <iostream>
+
+// class Date
+// {
+// private:
+// 	int	_date;
+// 	int	_month;
+// 	int	_year;
+
+// public:
+// 	void	set_date(const int &s_date, const int &s_month, const int &s_year)
+// 	{
+// 		_date = s_date;
+// 		_month = s_month;
+// 		_year = s_year;
+// 	}
+// 	const int	&get_day()
+// 	{
+// 		return _date;
+// 	}
+// 	const int	&get_month()
+// 	{
+// 		return _month;
+// 	}
+// 	void	Copy(const Date &orignal)
+// 	{
+// 		_date = orignal._date;
+// 		_month = orignal._month;
+// 		_year = orignal._year;
+// 	}
+// };
+
+// int	main()
+// {
+// 	Date	today;
+// 	// today.date = 25;
+// 	// today.month = 8;
+// 	// today.year = 2023;
+
+// 	today.set_date(25, 8, 2024);
+
+// 	std::cout << today.get_day() << std::endl;
+
+// 	Date	copy;
+
+// 	copy.Copy(today);
+// 	std::cout << "At copy \n" << copy.get_day() << std::endl;
+// 	std::cout << copy.get_month() << std::endl;
+// 	return (0);
+// }
+// #include <iostream>
+
+// class Fraction
+// {
+// private:
+// 	int	_bunja;
+// 	int	_bunmo;
+
+// public:
+// 	Fraction(const int &bunja_in = 2, const int &bunmo_in = 3)
+// 	{
+// 		_bunja = bunja_in;
+// 		_bunmo = bunmo_in;
+// 	}
+// 	void	print()
+// 	{
+// 		std::cout << _bunja << " \\ " << _bunmo << std::endl;
+// 	}
+// };
+
+// int	main()
+// {
+// 	Fraction	frac{ 3 , 4 };
+
+// 	frac.print();
+// 	return (0);
+// }
+
+// Constructor 사용법!
+// #include <iostream>
+
+// class Second
+// {
+// public:
+// 	Second()
+// 	{
+// 		std::cout << "Second constructor" << std::endl;
+// 	}
+// };
+
+// class First
+// {
+// private:
+// 	Second sec;
+// public:
+// 	First()
+// 	{
+// 		std::cout << "First constructor" << std::endl;
+// 	}
+// };
+
+// int main()
+// {
+// 	First fir;
+// 	return (0);
+// }
+// 생성자 멤버의 초기화 목록 사용하는 법!
+// #include <iostream>
+
+// class B
+// {
+// private:
+// 	int	m_b;
+// public:
+// 	B(const int &m_b_in)
+// 		:m_b(m_b_in)
+// 	{}
+// 	void	print_b()
+// 	{
+// 		std::cout << m_b << std::endl;
+// 	}
+// };
+
+// class Something
+// {
+// private:
+// 	int		m_i = 1;
+// 	double	m_d = 4.2;
+// 	char	m_c = 'B';
+// 	int		m_arr[5] = {6,7,8,9,10};
+// 	B		m_b;
+// public:
+// 	Something()
+// 		: m_i{1}, m_d{3.14}, m_c{'A'}, m_arr{1,2,3,4,5}, m_b(m_i - 1)
+// 		{
+// 			m_i *= 3;
+// 			m_d *= 3;
+// 			m_c += 3;
+// 		}
+// 	void	print_something()
+// 	{
+// 		std::cout << m_i << " " << m_d << " " << m_c << " " << std::endl;
+// 		for (auto &e : m_arr)
+// 			std::cout << e << " ";
+// 		std::cout << std::endl;
+// 	}
+// };
+
+// int main()
+// {
+// 	Something	i;
+// 	B			j{0};
+
+// 	i.print_something();
+// 	j.print_b();
+// 	return (0);
+// }
+// 소멸자에 대한 기본 사용 법!
+// #include <iostream>
+
+// class IntArray
+// {
+// private:
+// 	int	*m_arr = nullptr;
+// 	int	m_length = 0;
+// public:
+// 	IntArray(const int &length_in)
+// 	{
+// 		m_length = length_in;
+// 		m_arr = new int[m_length];
+// 		// std::cout << "Constructor" << std::endl;
+// 	}
+// 	~IntArray()
+// 	{
+// 		if (m_arr != nullptr)
+// 			delete[] m_arr;
+// 		// std::cout << "Destructor" << std::endl;
+// 	}
+// };
+
+
+// int	main()
+// {
+// 	while (1)
+// 	{
+// 		IntArray	a(10000);
+// 		// system("leaks a.out");
+// 	}
+// 	return (0);
+// }
