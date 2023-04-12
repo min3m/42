@@ -552,3 +552,153 @@
 // 	}
 // 	return (0);
 // }
+// 정적멤버 변수 선언및 초기화 하는법! 정적 멤버 변수는 namespace영역에서 초기화 해줘야함! 왜냐 static은 이미 메모리에 올라가있지만
+// 클라스는 아직 데이터가 올라가 있지 않기 때문에 메모리에 올린후 초기화 해줘야함! static const는 그냥 상수이기때문에 바로 초기화 ok
+// #include <iostream>
+
+// class Something
+// {
+// public:
+// 	static int	value;
+// };
+
+// int Something::value = 1;
+
+// int main()
+// {
+// 	Something	st1;
+// 	Something	st2;
+
+// 	std::cout << st1.value << std::endl;
+// 	return (0);
+// }
+// 정적멤버 함수 사용법과 private statica멤버에 대한 접근을 어떻게하는지!
+// #include <iostream>
+
+// class Something
+// {
+// public:
+// 	class _init
+// 	{
+// 	public:
+// 		_init()
+// 		{
+// 			s_value = 9876;
+// 		}
+// 	};
+
+// private:
+// 	static int		s_value;
+// 	int				m_value;
+// 	static _init	s_init;
+
+// public:
+// 	static int	get_value()
+// 	{
+// 		return (s_value);
+// 	}
+// 	int	temp()
+// 	{
+// 		return (this->s_value);
+// 	}
+// };
+
+// int Something::s_value = 1024;
+// Something::_init Something::s_init;
+
+// int main()
+// {
+// 	std::cout << Something::get_value() << std::endl;
+
+// 	Something st1, st2;
+
+// 	std::cout << st1.get_value() << std::endl;
+// 	// std::cout << st1.s_value << std::endl;
+
+// 	int	(Something::*fptr)() = &Something::temp;
+// 	std::cout << (st1.*fptr)() << std::endl;
+
+// 	int	(*fptr2)() = &Something::get_value;
+// 	std::cout << (*fptr2)() << std::endl;
+
+// 	return (0);
+// }
+//friend 선언하는 법과 사용법!
+// #include <iostream>
+
+// class A;
+
+// class B
+// {
+// private:
+// 	int	m_value = 2;
+
+// public:
+// 	void	doSomething ( A &a);
+// };
+
+// class A
+// {
+// private:
+// 	int	m_value = 3;
+
+// 	friend void	B::doSomething (A &a);
+// };
+
+// void	B::doSomething(A &a)
+// {
+// 		std::cout << a.m_value << std::endl;
+// }
+
+// int	main()
+// {
+// 	A	a;
+// 	B	b;
+
+// 	b.doSomething(a);
+// 	return (0);
+// }
+#include <iostream>
+
+// class A
+// {
+// public:
+// 	int	m_value;
+
+// 	A(const int &input)
+// 		:m_value(input)
+// 	{ std::cout << "Constructor" << std::endl; }
+// 	~A()
+// 	{ std::cout << "Destructor" << std::endl; }
+// 	void print()
+// 	{
+// 		std::cout << m_value << std::endl;
+// 	}
+// };
+
+// int main()
+// {
+// 	A	a(2);
+// 	a.print();
+// 	a.print();
+// 	A(2).print();
+// 	return (0);
+// }
+class Cents
+{
+private:
+	int	m_value;
+public:
+	Cents(int input) { m_value = input; }
+	int getCents() const { return m_value; }
+};
+
+Cents	add(const Cents &c1, const Cents &c2)
+{
+	return (Cents (c1.getCents() + c2.getCents()));
+}
+
+int main()
+{
+	std::cout << add(Cents(6), Cents(8)).getCents() << std::endl;
+}
