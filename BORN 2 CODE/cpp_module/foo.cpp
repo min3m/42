@@ -658,7 +658,7 @@
 // 	b.doSomething(a);
 // 	return (0);
 // }
-#include <iostream>
+// #include <iostream>
 
 // class A
 // {
@@ -684,21 +684,205 @@
 // 	A(2).print();
 // 	return (0);
 // }
-class Cents
+// 익명객체 사용하는법!
+// class Cents
+// {
+// private:
+// 	int	m_value;
+// public:
+// 	Cents(int input) { m_value = input; }
+// 	int getCents() const { return m_value; }
+// };
+
+// Cents	add(const Cents &c1, const Cents &c2)
+// {
+// 	return (Cents (c1.getCents() + c2.getCents()));
+// }
+
+// int main()
+// {
+// 	std::cout << add(Cents(6), Cents(8)).getCents() << std::endl;
+// 	return (0);
+// }
+//연산자 오버로딩!!!
+// #include <iostream>
+// class Cents
+// {
+// private:
+// 	int	m_value;
+// public:
+// 	Cents(int input) { m_value = input; }
+// 	int getCents() const { return m_value; }
+
+// 	friend Cents	operator + (const Cents &c1, const Cents &c2)
+// 	{
+// 		return (Cents (c1.getCents() + c2.getCents()));
+// 	}
+// };
+
+// int main()
+// {
+// 	Cents	c1(6);
+// 	Cents	c2(8);
+
+// 	// std::cout << add(c1, c2).getCents() << std::endl;
+// 	std::cout << (c1 + c2 + Cents(6)).getCents() << std::endl;
+// 	return (0);
+// }
+// 입출력 오버로딩!
+// #include <iostream>
+// #include <fstream>
+
+// class Point
+// {
+// private:
+// 	double	_x, _y, _z;
+// public:
+// 	Point(double x = 0.0, double y = 0.0, double z = 0.0)
+// 		: _x(x), _y(y), _z(z)
+// 	{}
+// 	double	get_x()	{ return (_x); }
+// 	double	get_y()	{ return (_y); }
+// 	double	get_z()	{ return (_z); }
+
+// 	// void	print_point()
+// 	// {
+// 	// 	std::cout << _x << " " << _y << " " << _z << std::endl;
+// 	// }
+// 	friend std::istream& operator >> (std::istream &in, Point &point) // 참조자 꼭! 넣어주기! 안바뀐다 여기
+// 	{
+// 		in >> point._x >> point._y >> point._z;
+// 		return (in);
+// 	}
+// 	friend std::ostream& operator << (std::ostream &out, const Point &point)
+// 	{
+// 		out << "[ " << point._x << " " << point._y << " " << point._z << " ]";
+// 		return (out);
+// 	}
+// };
+
+// int	main()
+// {
+// 	std::ofstream of("out.txt");
+// 	Point	p1, p2;
+
+// 	std::cin >> p1 >> p2;
+
+// 	// p1.print_point(); 출력 오버로딩 하기 전
+// 	// std::cout << " ";
+// 	// p2.print_point();
+// 	// std::cout << std::endl;
+
+// 	std::cout << p1 << " " << p2 << std::endl;
+
+// 	of.close();
+// 	return (0);
+// }
+// #include <iostream>
+// #include <vector>
+// #include <algorithm>
+
+// using namespace std;
+
+// class Cents
+// {
+// private:
+// 	int	m_value;
+// public:
+// 	Cents(int input = 0) { m_value = input; }
+// 	int getCents() const { return m_value; }
+// 	int& getCents() { return m_value; }
+
+// 	// 단항연산자 오버로딩!
+// 	// Cents operator - () const
+// 	// {
+// 	// 	return (-m_value);
+// 	// }
+// 	// bool operator ! () const
+// 	// {
+// 	// 	return ((m_value == 0) ? true : false);
+// 	// }
+// 	// == (비교 연산자 오버로딩!)
+// 	// friend bool operator == (const Cents &c1, const Cents &c2)
+// 	// {
+// 	// 	return (c1.m_value == c2.m_value);
+// 	// }
+// 	// 크기 비교 연산자 오버로딩
+// 	friend bool operator < (const Cents &c1, const Cents &c2)
+// 	{
+// 		return (c1.m_value < c2.m_value);
+// 	}
+// 	friend std::ostream& operator << (std::ostream &out, const Cents &cents)
+// 	{
+// 		out << cents.m_value;
+// 		return (out);
+// 	}
+// };
+
+// int main()
+// {
+// 	// 크기 비교 연산자 오버로딩 해서 솔팅해보기!
+// 	// vector<Cents> arr(20);
+
+// 	// for (unsigned int i = 0; i < 20; i++)
+// 	// 	arr[i].getCents() = i;
+// 	// std::random_shuffle(begin(arr), end(arr));
+// 	// for (auto &e : arr)
+// 	// 	cout << e << " ";
+// 	// cout <<endl;
+// 	// std::sort(begin(arr), end(arr));
+// 	// for (auto &e : arr)
+// 	// 	cout << e << " ";
+// 	// cout <<endl;
+// 	// Cents	c1(6);
+// 	// Cents	c2(6);
+
+// 	// std::cout << c1 << std::endl;
+// 	// std::cout << -c1 << std::endl;
+// 	// std::cout << -Cents(-10) << std::endl;
+// 	// std::cout << !c1 << " " << !c2 <<std::endl;
+// 	// if (c1 == c2)
+// 	// 	std::cout << "Equal" << std::endl;
+// 	return (0);
+// }
+#include <iostream>
+
+class Digit
 {
 private:
-	int	m_value;
+	int	_digit;
 public:
-	Cents(int input) { m_value = input; }
-	int getCents() const { return m_value; }
+	Digit(int digit = 0) : _digit(digit) {}
+
+
+	Digit& operator ++ ()
+	{
+		++_digit;
+		return (*this);
+	}
+	Digit operator ++ (int)
+	{
+		Digit	temp(_digit);
+		++(*this);
+		return (temp);
+	}
+
+	friend std::ostream& operator << (std::ostream &out, const Digit &d)
+	{
+		out << d._digit;
+		return (out);
+	}
 };
 
-Cents	add(const Cents &c1, const Cents &c2)
-{
-	return (Cents (c1.getCents() + c2.getCents()));
-}
 
-int main()
+
+int	main()
 {
-	std::cout << add(Cents(6), Cents(8)).getCents() << std::endl;
+	Digit	d(10);
+
+	std::cout << d << std::endl;
+	std::cout << ++d << std::endl;
+	std::cout << d++ << std::endl;
+	std::cout << d << std::endl;
+	return (0);
 }
