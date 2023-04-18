@@ -236,7 +236,7 @@
 
 // 	print_op(x, op, y);
 // }
-#include <iostream>
+// #include <iostream>
 
 // struct Mystruct
 // {
@@ -279,23 +279,134 @@
 // 	sum_num(&ms);
 // 	return (0);
 // }
-int main()
-{
-	char	My_string[255];
+// int main()
+// {
+// 	char	My_string[255];
 
-	// std::cin >> My_string;
-	std::cin.getline(My_string, 255);
+// 	// std::cin >> My_string;
+// 	std::cin.getline(My_string, 255);
 
-	std::cout << My_string << std::endl;
-	int	x;
+// 	std::cout << My_string << std::endl;
+// 	int	x;
 
-	std::cin >> x;
-	int	*arr = new int[x]{1,2,3,4,5};
+// 	std::cin >> x;
+// 	int	*arr = new int[x]{1,2,3,4,5};
 
-	for (int i = 0; i < x ; i++)
-		std::cout << arr[i] << std::endl;
-	delete[] arr;
-	for (int i = 0; i < x ; i++)
-		std::cout << arr[i] << std::endl;
-	return (0);
-}
+// 	std::cout << sum_num(10, 12) << std::endl;
+// 	return (0);
+// }
+//함수의 return value에 대해. 포인터나 레퍼런스로 리턴값을 받는건 주의! 잡혀있지 않은 메모리를 리턴받아 쓰레기 값이 저장되어 있을 수도 있음.
+// #include <iostream>
+
+// int	getValue(int x)
+// {
+// 	int	value = x * 5;
+// 	return (value);
+// }
+
+// int	main()
+// {
+// 	int value = getValue(5);
+
+// 	std::cout << value << std::endl;
+// 	std::cout << value << std::endl;
+// 	std::cout << value << std::endl;
+// 	std::cout << value << std::endl;
+// 	std::cout << value << std::endl;
+// 	std::cout << value << std::endl;
+// 	return (0);
+// }
+//함수 overloading에서 return type만 달라서는 다른 함수로 인식을 못함. parameter가 같으면 같은 함수로 인식! 즉 parameter가 다르고 존재해야 o ver loading 가능
+// #include <iostream>
+
+// auto	add(int x, int y)
+// {
+// 	return ((double )x + y);
+// }
+
+// double	add(double x, double y)
+// {
+// 	return (x + y);
+// }
+
+// int	main()
+// {
+// 	add(1, 2);
+// 	add(3.0, 4.0);
+// 	return (0);
+// }
+// parameter default값을 정해 줄 수 있다.
+// #include <iostream>
+// #include <string>
+
+// void print(int x) {}
+// void print(int x, int y ) { }
+
+// // void	print(int x = 10, int y = 20 , int z = 30)
+// // {
+// // 	std::cout << x << " " << y << " " << z << std::endl;
+// // }
+
+// int	main()
+// {
+// 	// print(100);
+// 	// print(100, 200);
+// 	// print(100, 200, 300);
+// 	// print();
+// 	print(10);
+// 	return (0);
+// }
+// 함수 포인터! 뒤에 예제 쫌 더 해보기
+// #include <iostream>
+
+// int func()
+// {
+// 	return (5);
+// }
+
+// int goo()
+// {
+// 	return (10);
+// }
+
+// int main()
+// {
+// 	int (*fptr)() = func;
+
+// 	std::cout << fptr() << std::endl;
+// 	fptr = goo;
+// 	std::cout << fptr() << std::endl;
+// }
+// vector를 스택 즉 array처럼 사용하는 법!
+// #include <iostream>
+// #include <vector>
+
+// void printstack(std::vector<int> &stack)
+// {
+// 	for (auto &i : stack)
+// 		std::cout << i << " ";
+// 	std::cout << std::endl;
+// }
+
+// int	main()
+// {
+// 	std::vector<int> stack = {1,2,3};
+
+// 	stack.push_back(3);
+// 	printstack(stack);
+// 	stack.push_back(5);
+// 	printstack(stack);
+// 	stack.push_back(9);
+// 	printstack(stack);
+// 	stack.pop_back();
+// 	printstack(stack);
+// 	v.resize(2);
+// 	v.reserve(100);
+// 	std::cout << std::endl;
+// 	std::cout << v.size() << " " << v.capacity() << std::endl;
+// 	std::cout << v[2] << std::endl;
+// 	int *ptr = v.data();
+// 	std::cout << ptr[2] << std::endl;
+// 	std::cout << v.at(2) << std::endl;
+// 	return (0);
+// }
