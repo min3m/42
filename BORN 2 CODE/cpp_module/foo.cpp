@@ -845,44 +845,310 @@
 // 	// 	std::cout << "Equal" << std::endl;
 // 	return (0);
 // }
-#include <iostream>
+// 증감 연산자 오버로딩!
+// #include <iostream>
 
-class Digit
-{
-private:
-	int	_digit;
-public:
-	Digit(int digit = 0) : _digit(digit) {}
-
-
-	Digit& operator ++ ()
-	{
-		++_digit;
-		return (*this);
-	}
-	Digit operator ++ (int)
-	{
-		Digit	temp(_digit);
-		++(*this);
-		return (temp);
-	}
-
-	friend std::ostream& operator << (std::ostream &out, const Digit &d)
-	{
-		out << d._digit;
-		return (out);
-	}
-};
+// class Digit
+// {
+// private:
+// 	int	_digit;
+// public:
+// 	Digit(int digit = 0) : _digit(digit) {}
 
 
+// 	Digit& operator ++ ()
+// 	{
+// 		++_digit;
+// 		return (*this);
+// 	}
+// 	Digit operator ++ (int)
+// 	{
+// 		Digit	temp(_digit);
+// 		++(*this);
+// 		return (temp);
+// 	}
 
-int	main()
-{
-	Digit	d(10);
+// 	friend std::ostream& operator << (std::ostream &out, const Digit &d)
+// 	{
+// 		out << d._digit;
+// 		return (out);
+// 	}
+// };
 
-	std::cout << d << std::endl;
-	std::cout << ++d << std::endl;
-	std::cout << d++ << std::endl;
-	std::cout << d << std::endl;
-	return (0);
-}
+
+
+// int	main()
+// {
+// 	Digit	d(10);
+
+// 	std::cout << d << std::endl;
+// 	std::cout << ++d << std::endl;
+// 	std::cout << d++ << std::endl;
+// 	std::cout << d << std::endl;
+// 	return (0);
+// }
+//[]연산자 오버로딩하는 법!
+// #include <iostream>
+// #include <cassert>
+
+// class List
+// {
+// private:
+// 	int	arr[10];
+// public:
+// 	int &operator [](const int id)
+// 	{
+// 		assert(id >= 0);
+// 		assert(id < 10);
+// 		return arr[id];
+// 	}
+// 	const int &operator [](const int id) const
+// 	{
+// 		assert(id >= 0);
+// 		assert(id < 10);
+// 		return arr[id];
+// 	}
+// };
+
+// int	main()
+// {
+// 	List my_list;
+
+// 	my_list[4] = 10;
+// 	std::cout << my_list[4] << std::endl;
+// 	// my_list.set_item(3, 1);
+// 	// std::cout << my_list.get_item(3) << std::endl;
+// 	// my_list.get_list()[3] = 10;
+// 	// std::cout << my_list.get_list()[3] << std::endl;
+// 	return (0);
+// }
+// 형변환 overloading
+// #include <iostream>
+
+// class Cents
+// {
+// private:
+// 	double	_value = 0;
+// public:
+// 	Cents(const double	input) : _value(input)
+// 	{}
+// 	// operator int ()
+// 	// {
+// 	// 	return(_value);
+// 	// }
+// 	operator double ()
+// 	{
+// 		return(_value);
+// 	}
+// };
+
+// void	print_int(const double value)
+// {
+// 	std::cout << value << std::endl;
+// }
+
+// int	main()
+// {
+// 	// Cents cents(7);
+// 	Cents cents(7.3);
+// 	double value = (double)cents;
+
+// 	print_int(cents);
+// 	return (0);
+// }
+//복사 생성자 사용법
+// #include <iostream>
+// #include <cassert>
+
+// class Fraction
+// {
+// private:
+// 	int	_numerator;
+// 	int	_denominator;
+// public:
+// 	Fraction(int num = 0, int dem = 1)
+// 		: _numerator(num), _denominator(dem)
+// 	{ assert(dem != 0); }
+// 	Fraction(const Fraction &fraction)
+// 		: _numerator(fraction._numerator), _denominator(fraction._denominator)
+// 	{ std::cout << "copy constrcutor call!" << std::endl; }
+// 	friend std::ostream &operator << (std::ostream &out, const Fraction f)
+// 	{
+// 		out << f._numerator << "/" << f._denominator << std::endl;
+// 		return (out);
+// 	}
+// };
+
+// Fraction	dosomething()
+// {
+// 	Fraction	temp(3, 5);
+
+// 	std::cout << &temp << std::endl;
+
+// 	return (temp);
+// }
+
+// int main()
+// {
+// 	Fraction fration = dosomething();
+// 	std::cout << &fration << std::endl;
+// 	// std::cout << fration << std::endl;
+
+// 	// Fraction f(fration);
+// 	// std::cout << f;
+
+// 	return (0);
+// }
+// 깊은 복사와 얕은 복사
+// #include <iostream>
+// #include <cassert>
+
+// class My_string
+// {
+// // private:
+// public:
+// 	char	*_data = nullptr;
+// 	int		_length = 0;
+// public:
+// 	My_string(const char *source = "")
+// 	{
+// 		assert(source);
+
+// 		_length = std::strlen(source) + 1;
+// 		_data = new char[_length];
+
+// 		for (int i = 0; i < _length; i++)
+// 			_data[i] = source[i];
+// 		_data[_length - 1] = 0;
+// 	}
+// 	My_string(const My_string &source)
+// 	{
+// 		std::cout << "Copy constructor!!" << std::endl;
+// 		_length = source._length;
+
+// 		if (source._data != nullptr)
+// 		{
+// 			_data = new char[_length];
+// 			for (int i = 0; i < _length; i++)
+// 				_data[i] = source._data[i];
+// 			_data[_length - 1] = 0;
+// 		}
+// 		else
+// 			_data = nullptr;
+// 	}
+// 	My_string &operator = (const My_string &source)
+// 	{
+// 		std::cout << "Assignment operator!!" << std::endl;
+// 		if (this == &source)
+// 			return (*this);
+// 		delete[] _data;
+// 		_length = source._length;
+
+// 		if (source._data != nullptr)
+// 		{
+// 			_data = new char[_length];
+// 			for (int i = 0; i < _length; i++)
+// 				_data[i] = source._data[i];
+// 			_data[_length - 1] = 0;
+// 		}
+// 		else
+// 			_data = nullptr;
+// 	}
+// 	char	*getString() { return _data; }
+// 	~My_string()
+// 	{
+// 		delete[] _data;
+// 	}
+// };
+
+// int main()
+// {
+// 	My_string	hello("hello");
+
+// 	std::cout << (int *)hello._data << std::endl;
+// 	std::cout << hello.getString() << std::endl;
+
+// 	{
+// 		My_string	copy = hello;
+// 		std::cout << (int *)copy._data << std::endl;
+// 		std::cout << copy.getString() << std::endl;
+// 	}
+// 	std::cout << hello.getString() << std::endl;
+// 	return (0);
+// }
+//initializer list 오버로딩하는 법!
+// #include <iostream>
+// #include <cassert>
+// #include <initializer_list>
+
+// class IntArray
+// {
+// public:
+// 	unsigned	_length = 0;
+// 	int			*_data = nullptr;
+// public:
+// 	IntArray(unsigned input)
+// 		: _length(input)
+// 	{
+// 		_data = new int[input];
+// 	}
+// 	IntArray(const std::initializer_list<int> &list)
+// 		: IntArray(list.size())
+// 	{
+// 		int	count = 0;
+// 		for (auto & e : list)
+// 		{
+// 			_data[count++] = e;
+// 		}
+// 		//list는 []참조 문자 사용 불가능!
+// 	}
+// 	~IntArray()
+// 	{
+// 		delete[] _data;
+// 	};
+
+// 	IntArray &operator = (const IntArray &source)
+// 	{
+// 		std::cout << "= operator!" << std::endl;
+// 		if (this == &source)
+// 			return (*this);
+// 		if (_data)
+// 			delete[] _data;
+// 		if (source._data != nullptr)
+// 		{
+// 			_data = new int[_length];
+// 			for (int i = 0; i < _length; i++)
+// 			{
+// 				_data[i] = source._data[i];
+// 			}
+// 		}
+// 		else
+// 			_data = nullptr;
+// 		return (*this);
+// 	}
+
+// 	friend std::ostream &operator << (std::ostream &out, const IntArray &arr)
+// 	{
+// 		for(int i = 0; i < arr._length; i++)
+// 		{
+// 			out << arr._data[i] << " ";
+// 		}
+// 		out << std::endl;
+// 		return(out);
+// 	}
+// };
+
+// int	main()
+// {
+// 	int	arr1[5] = {1, 2, 3, 4, 5};
+// 	int	*arr2 = new int[5]{1, 2, 3, 4, 5};
+
+// 	auto	il = {1, 2, 3};
+// 	IntArray int_array {1, 2, 6, 4, 5};
+// 	std::cout << (int *)(int_array._data) << std::endl;
+// 	IntArray int_array2 {1, 2, 3};
+// 	int_array2 = int_array;
+// 	std::cout << (int *)(int_array2._data) << std::endl;
+// 	std::cout << int_array;
+// 	return (0);
+// }
