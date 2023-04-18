@@ -846,34 +846,34 @@
 // 	// 	std::cout << "Equal" << std::endl;
 // 	return (0);
 // }
-#include <iostream>
+// #include <iostream>
 
-class Digit
+// class Digit
 // {
-private:
-	int// 	_digit;
-public:
-	Digit(int digit = 0) : _digit(digit) {}
+// private:
+// 	int// 	_digit;
+// public:
+// 	Digit(int digit = 0) : _digit(digit) {}
 
 
-	Digit& operator ++ ()
-	{
-		++_digit;
-		return (*this);
-	}
-	Digit operator ++ (int)
-	{
-		Digit	temp(_digit);
-		++(*this);
-		return (temp);
-	}
+// 	Digit& operator ++ ()
+// 	{
+// 		++_digit;
+// 		return (*this);
+// 	}
+// 	Digit operator ++ (int)
+// 	{
+// 		Digit	temp(_digit);
+// 		++(*this);
+// 		return (temp);
+// 	}
 
-	friend std::ostream& operator << (std::ostream &out, const Digit &d)
-	{
-		out << d._digit;
-		return (out);
-	}
-};
+// 	friend std::ostream& operator << (std::ostream &out, const Digit &d)
+// 	{
+// 		out << d._digit;
+// 		return (out);
+// 	}
+// };
 
 // 	// std::cin >> My_string;
 // 	std::cin.getline(My_string, 255);
