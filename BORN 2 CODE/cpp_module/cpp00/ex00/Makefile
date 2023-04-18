@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
+#    By: youngmch <youngmch@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 19:59:58 by youngmch          #+#    #+#              #
-#    Updated: 2023/04/17 20:24:45 by youngmch         ###   ########.fr        #
+#    Updated: 2023/04/18 20:46:43 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@
 NAME = megaphone
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
-DB = -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+DB =
 FA =
 RM = rm -f
 
