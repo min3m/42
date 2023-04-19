@@ -6,7 +6,7 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 19:59:58 by youngmch          #+#    #+#              #
-#    Updated: 2023/04/19 16:55:57 by youngmch         ###   ########.fr        #
+#    Updated: 2023/04/19 17:01:55 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = megaphone
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-DB = -g
+DB =
 FA =
 RM = rm -f
 
