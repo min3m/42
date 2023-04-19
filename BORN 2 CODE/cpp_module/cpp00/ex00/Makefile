@@ -6,7 +6,7 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 19:59:58 by youngmch          #+#    #+#              #
-#    Updated: 2023/04/17 20:24:45 by youngmch         ###   ########.fr        #
+#    Updated: 2023/04/19 16:55:57 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME = megaphone
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 DB = -g
 FA =
 RM = rm -f
@@ -53,8 +53,8 @@ sources2 +=
 
 all_sources = $(sources1) $(sources2)
 
-objects1 = $(sources1:.c=.o)
-objects2 = $(sources2:.c=.o)
+objects1 = $(sources1:.cpp=.o)
+objects2 = $(sources2:.cpp=.o)
 all_objects = $(objects1) $(objects2)
 
 define objects_goal
@@ -77,8 +77,7 @@ $(NAME) : $(objects_goal)
 
 bonus : $(NAME)
 
-$(object_dir)/%.o : %.c
-	@#mkdir -p $(object_dir)
+$(object_dir)/%.o : %.cpp
 	@mkdir -p $(object_dir)/$(dir $^)
 	@$(CC) $(CFLAGS) -c $^ -o $@
 	@echo " $(MAGENTA)$(NAME) $(RESET)objects file compiling... $(DELINE)$(GREEN) $^ $(RESET)$(CURSUP)"
