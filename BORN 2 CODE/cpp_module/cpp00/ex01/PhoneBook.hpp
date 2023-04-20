@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:38:40 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/19 21:54:48 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:48:31 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ public:
 	PhoneBook(/* args */);
 	~PhoneBook();
 	void add_contact(Contact temp, int index);
+	void print_contact(int index);
+	void print_to_width(std::string _str);
+	void show_contact(int index);
 };
 
 #endif

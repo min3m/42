@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:43:27 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/19 22:12:51 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:45:55 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define CONTACT_HPP
 
 #include <string>
+#include <iostream>
+#include <iomanip>
 
 class Contact
 {
@@ -31,6 +33,11 @@ public:
 	void set_nick(std::string _nick_name);
 	void set_number(std::string _phone_number);
 	void set_secret(std::string _secret);
+	std::string get_first();
+	std::string get_last();
+	std::string get_nick();
+	std::string get_number();
+	std::string get_secret();
 };
 
 #endif
