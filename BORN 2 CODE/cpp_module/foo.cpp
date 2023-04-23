@@ -1153,3 +1153,21 @@
 // 	std::cout << int_array;
 // 	return (0);
 // }
+#include <iostream>
+int main()
+{
+	int val = 10;
+	int result = 12;
+	int *const ptr1 = &val;
+	const int *ptr2 = &val;
+
+	std::cout << "ptr1: " << ptr1 << " ptr2: " << ptr2 << std::endl;
+	std::cout << "ptr1: " << *ptr1 << " ptr2: " << *ptr2 << std::endl;
+
+	*ptr1 = 11;
+	ptr2 = &result;
+	std::cout << "ptr1: " << ptr1 << " ptr2: " << ptr2 << std::endl;
+	std::cout << "ptr1: " << *ptr1 << " ptr2: " << *ptr2 << std::endl;
+
+	return (0);
+}
