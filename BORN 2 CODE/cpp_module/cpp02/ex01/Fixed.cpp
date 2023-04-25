@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:52:31 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/24 20:56:34 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:10:18 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,40 @@ Fixed& Fixed::operator = (const Fixed &source)
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called." << std::endl;
 	return (this->_value);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called." << std::endl;
 	this->_value = raw;
+}
+
+//EX01
+
+Fixed::Fixed(const int _value)
+{
+	std::cout << "Int constructor called." << std::endl;
+	this->_value = _value << _frac_bits;
+}
+
+Fixed::Fixed(const float _value)
+{
+	std::cout << "Float constructor called." << std::endl;
+	this->_value = roundf(_value * (1 << _frac_bits));
+}
+
+float Fixed::toFloat(void) const
+{
+	return (static_cast<float>(_value) / (1 << _frac_bits));
+}
+
+int Fixed::toInt(void) const
+{
+	return (_value >> _frac_bits);
+}
+
+std::ostream& operator << (std::ostream &out, const Fixed &source)
+{
+	out << source.toFloat();
+	return (out);
 }
