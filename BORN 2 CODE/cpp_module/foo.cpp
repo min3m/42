@@ -1169,5 +1169,10 @@ int main()
 	std::cout << "ptr1: " << ptr1 << " ptr2: " << ptr2 << std::endl;
 	std::cout << "ptr1: " << *ptr1 << " ptr2: " << *ptr2 << std::endl;
 
+	const int i = 1;
+	int j;
+
+	j = i;
+	std::cout << j << std::endl;
 	return (0);
 }
