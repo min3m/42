@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:54:20 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/27 16:28:36 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:52:10 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class ClapTrap
 {
-private:
+protected:
 	std::string	_name;
 	int			_hit_point;
 	int			_energy_point;
@@ -27,6 +27,7 @@ private:
 public:
 	ClapTrap();
 	ClapTrap(const std::string &name);
+	ClapTrap(const std::string &name, const int &hp, const int &ep, const int &ad);
 	ClapTrap(const ClapTrap &source);
 	~ClapTrap();
 	ClapTrap& operator = (const ClapTrap& source);
@@ -42,7 +43,5 @@ public:
 	void set_ep(const int &ep);
 	void set_ad(const int &ad);
 };
-
-std::ostream &operator << (std::ostream &out, const ClapTrap &source);
 
 #endif

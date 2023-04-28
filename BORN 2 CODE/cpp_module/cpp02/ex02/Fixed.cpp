@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:52:31 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/25 15:15:08 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:06:24 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ Fixed::~Fixed()
 Fixed& Fixed::operator = (const Fixed &source)
 {
 	this->_value = source.getRawBits();
+	if (this == &source)
+		return (*this);
 	return (*this);
 }
 

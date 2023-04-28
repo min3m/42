@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:10:22 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/27 17:57:00 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:56:51 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void ScavTrap::beRepaired(unsigned int amount)
 	else
 		std::cout << "ScavTrap " << _name << "'s EP is 0!" << std::endl;
 }
-
 
 void ScavTrap::guardGate()
 {

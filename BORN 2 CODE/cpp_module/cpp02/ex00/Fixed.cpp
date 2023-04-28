@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:52:31 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/24 20:56:34 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:03:45 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ Fixed::~Fixed()
 Fixed& Fixed::operator = (const Fixed &source)
 {
 	std::cout << "Copy assignment operator called." << std::endl;
+	if (this == &source)
+		return (*this);
 	this->_value = source.getRawBits();
 	return (*this);
 }

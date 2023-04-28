@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:56:30 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/27 17:17:46 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:17:24 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,35 @@
 ClapTrap::ClapTrap()
 	:_name("Unknown"), _hit_point(10), _energy_point(10), _attack_damage(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "ClapTrap Default Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &source)
 {
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "ClapTrap Copy Constructor called" << std::endl;
 	*this = source;
 }
 
 ClapTrap::ClapTrap(const std::string &name)
 	:_name(name), _hit_point(10), _energy_point(10), _attack_damage(0)
 {
-	std::cout << "String Constructor called" << std::endl;
+	std::cout << "ClapTrap String Constructor called" << std::endl;
+}
+
+ClapTrap::ClapTrap(const std::string &name, const int &hp, const int &ep, const int &ad) //add at ex01
+	:_name(name), _hit_point(hp), _energy_point(ep), _attack_damage(ad)
+{
+	std::cout << "ClapTrap Full Constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Default Destructor called" << std::endl;
+	std::cout << "ClapTrap Default Destructor called" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator = (const ClapTrap &source)
 {
-	std::cout << "Copy Assignment called" << std::endl;
+	std::cout << "ClapTrap Copy Assignment called" << std::endl;
 	if (this == &source)
 		return (*this);
 	this->_name = source.get_name();
@@ -45,15 +51,6 @@ ClapTrap &ClapTrap::operator = (const ClapTrap &source)
 	this->_energy_point = source.get_ep();
 	this->_attack_damage = source.get_ad();
 	return (*this);
-}
-
-std::ostream &operator << (std::ostream &out ,const ClapTrap &source)
-{
-	out << "Name : " << source.get_name() << std::endl;
-	out << "HP : " << source.get_hp() << std::endl;
-	out << "EP : " << source.get_ep() << std::endl;
-	out << "AD : " << source.get_ad() << std::endl;
-	return (out);
 }
 
 void ClapTrap::set_name(const std::string &name) { _name = name; }

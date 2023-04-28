@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:56:12 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/26 19:14:22 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:34:32 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 int main()
 {
-	ClapTrap	a("JIM");
-	ClapTrap	b;
-	ClapTrap	c(a);
-	ClapTrap	d;
+	ScavTrap	a("A");
+	ScavTrap	b("B");
+	ScavTrap	c("C");
+	ScavTrap	d;
 
-	d = b;
+	d = c;
 
-	std::cout << "\n";
-	std::cout << a;
-	a.attack("Marine");
-	std::cout << a;
-	a.takeDamage(5);
-	std::cout << a;
-	a.beRepired(10);
-	std::cout << a;
-	a.takeDamage(100);
-	std::cout << a;
-	a.attack("JAX");
-	a.takeDamage(100);
-	a.beRepired(100);
-	std::cout << a;
-	std::cout << b;
-	std::cout << c;
-	std::cout << d;
+
+	std::cout << std::endl;
+	a.attack("B");
+	b.takeDamage(a.get_ad());
+	std::cout << std::endl;
+	b.attack("A");
+	a.takeDamage(b.get_ad());
+	std::cout << std::endl;
+	c.attack("B");
+	b.takeDamage(c.get_ad());
+	std::cout << std::endl;
+	b.beRepaired(25);
+	std::cout << std::endl;
+	a.beRepaired(25);
+	std::cout << std::endl;
+	a.guardGate();
+	std::cout << std::endl;
 
 	return (0);
 }
