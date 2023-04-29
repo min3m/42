@@ -6,13 +6,13 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 16:47:00 by youngmch          #+#    #+#              #
-#    Updated: 2023/04/27 17:53:29 by youngmch         ###   ########.fr        #
+#    Updated: 2023/04/28 15:17:26 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ---- NAME ---- #
 
-NAME = fragtrap
+NAME = diamondtrap
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -44,6 +44,7 @@ sources1 += main.cpp
 sources1 += ClapTrap.cpp
 sources1 += ScavTrap.cpp
 sources1 += FragTrap.cpp
+sources1 += DiamondTrap.cpp
 
 # ---- Bonus ---- #
 
