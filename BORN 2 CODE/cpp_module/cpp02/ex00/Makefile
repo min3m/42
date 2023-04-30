@@ -6,7 +6,7 @@
 #    By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 21:51:18 by youngmch          #+#    #+#              #
-#    Updated: 2023/04/24 16:39:08 by youngmch         ###   ########.fr        #
+#    Updated: 2023/04/30 16:49:57 by youngmch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = fixed
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 DB =
 FA =

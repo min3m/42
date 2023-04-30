@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:52:31 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/27 17:06:24 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:49:32 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ void Fixed::setRawBits(int const raw)
 Fixed::Fixed(const int _value)
 {
 	this->_value = _value << _frac_bits;
-	std::cout << "INT constructor : " << this->_value << std::endl;
 }
 
 Fixed::Fixed(const float _value)
 {
 	this->_value = roundf(_value * (1 << _frac_bits));
-	std::cout << "Float constructor : " << this->_value << std::endl;
 }
 
 float Fixed::toFloat(void) const
