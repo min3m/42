@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:42:29 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/27 17:55:07 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:36:38 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void FragTrap::attack(const std::string &target)
 		std::cout << "FragTrap " << _name << " attacks " << target << ", causing " << _attack_damage << " points of damage!" << std::endl;
 		_energy_point--;
 	}
-	else if (_hit_point < 0)
+	else if (_hit_point <= 0)
 		std::cout << "FragTrap " << _name << "'s already dead, he can't do anything!" << std::endl;
 	else
 		std::cout << "FragTrap " << _name << "'s EP is 0!" << std::endl;
@@ -81,7 +81,7 @@ void FragTrap::beRepaired(unsigned int amount)
 		_hit_point += amount;
 		_energy_point--;
 	}
-	else  if (_hit_point < 0)
+	else  if (_hit_point <= 0)
 		std::cout << "FragTrap " << _name << "'s already dead, he can't do anything!" << std::endl;
 	else
 		std::cout << "FragTrap " << _name << "'s EP is 0!" << std::endl;
