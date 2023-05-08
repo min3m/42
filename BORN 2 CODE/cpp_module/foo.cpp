@@ -1153,26 +1153,77 @@
 // 	std::cout << int_array;
 // 	return (0);
 // }
+// #include <iostream>
+// int main()
+// {
+// 	int val = 10;
+// 	int result = 12;
+// 	int *const ptr1 = &val;
+// 	const int *ptr2 = &val;
+
+// 	std::cout << "ptr1: " << ptr1 << " ptr2: " << ptr2 << std::endl;
+// 	std::cout << "ptr1: " << *ptr1 << " ptr2: " << *ptr2 << std::endl;
+
+// 	*ptr1 = 11;
+// 	ptr2 = &result;
+// 	std::cout << "ptr1: " << ptr1 << " ptr2: " << ptr2 << std::endl;
+// 	std::cout << "ptr1: " << *ptr1 << " ptr2: " << *ptr2 << std::endl;
+
+// 	const int i = 1;
+// 	int j;
+
+// 	j = i;
+// 	std::cout << j << std::endl;
+// 	return (0);
+// }
 #include <iostream>
+
+template<typename T>
+class A
+{
+private:
+	T m_value;
+
+public:
+	A(const T &value)
+		:m_value(value)
+	{
+	}
+	void print()
+	{
+		std::cout << m_value << std::endl;
+	}
+};
+
+template<typename T>
+class A<T *>
+{
+private:
+	T *m_value;
+
+public:
+	A(T *value)
+		:m_value(value)
+	{
+	}
+	void print()
+	{
+		std::cout << *m_value << std::endl;
+	}
+};
+
 int main()
 {
-	int val = 10;
-	int result = 12;
-	int *const ptr1 = &val;
-	const int *ptr2 = &val;
+	A<int> a_int(123);
+	a_int.print();
 
-	std::cout << "ptr1: " << ptr1 << " ptr2: " << ptr2 << std::endl;
-	std::cout << "ptr1: " << *ptr1 << " ptr2: " << *ptr2 << std::endl;
+	int temp = 456;
+	A<int *> a_ptr(&temp);
+	a_ptr.print();
 
-	*ptr1 = 11;
-	ptr2 = &result;
-	std::cout << "ptr1: " << ptr1 << " ptr2: " << ptr2 << std::endl;
-	std::cout << "ptr1: " << *ptr1 << " ptr2: " << *ptr2 << std::endl;
+	double temp_d = 3.141592;
+	A<double *> a_doulbe_ptr(&temp_d);
+	a_doulbe_ptr.print();
 
-	const int i = 1;
-	int j;
-
-	j = i;
-	std::cout << j << std::endl;
 	return (0);
 }
