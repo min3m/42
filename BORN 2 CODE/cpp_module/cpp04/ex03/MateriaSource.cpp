@@ -78,7 +78,7 @@ AMateria *MateriaSource::createMateria (std::string const & type)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->skills[i]->getType() == type)
+		if (this->skills[i] && this->skills[i]->getType() == type)
 			return (this->skills[i]->clone());
 	}
 	return (NULL);

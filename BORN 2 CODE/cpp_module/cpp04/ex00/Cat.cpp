@@ -2,6 +2,7 @@
 
 Cat::Cat()
 {
+	this->type = "Cat";
 	std::cout << "Cat Default Constructor called" << std::endl;
 }
 
