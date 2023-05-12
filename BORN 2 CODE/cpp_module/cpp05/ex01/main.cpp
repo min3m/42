@@ -56,7 +56,7 @@ int main()
 		}
 		try
 		{
-			Form topSecret("Korea TopSecret", 151, 1);
+			Form topSecret("Korea TopSecret", 151, 12);
 		}
 		catch(const std::exception& e)
 		{

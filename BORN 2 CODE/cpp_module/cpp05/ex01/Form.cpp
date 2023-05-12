@@ -23,6 +23,9 @@ Form &Form::operator = (const Form &source)
 {
 	if (this == &source)
 		return (*this);
+	*const_cast<std::string *>(&_name) = source.getName();
+	*const_cast<int *>(&_signGrade) = source.getSignGrade();
+	*const_cast<int *>(&_exeGrade) = source.getExeGrade();
 	this->_sign = source.getSign();
 	return (*this);
 }

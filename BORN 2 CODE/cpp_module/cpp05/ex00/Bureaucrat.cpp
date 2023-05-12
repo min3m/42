@@ -24,7 +24,7 @@ Bureaucrat &Bureaucrat::operator = (const Bureaucrat &source)
 	if (this == &source)
 		return (*this);
 	// static_cast<std::string>(this->name) = source.getName(); // const 성질이 아예 사라짐
-	// *(const_cast<std::string *>(&this->name)) = source.getName();
+	*(const_cast<std::string *>(&this->name)) = source.getName();
 	this->grade = source.grade;
 	return (*this);
 }
