@@ -9,7 +9,7 @@ private:
 	const std::string _name;
 	const int _signGrade;
 	const int _exeGrade;
-	bool _sign;
+	bool _signed;
 
 public:
 	Form();
@@ -20,7 +20,7 @@ public:
 	std::string getName() const;
 	int getSignGrade() const;
 	int getExeGrade() const;
-	bool getSign() const;
+	bool getSigned() const;
 	void beSigned(const Bureaucrat &someone);
 	class GradeTooHighException : public std::exception
 	{

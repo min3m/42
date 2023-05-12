@@ -1,12 +1,12 @@
 #include "Form.hpp"
 
 Form::Form()
-	:_name("UNKNOWN"), _signGrade(1), _exeGrade(1), _sign(false)
+	:_name("UNKNOWN"), _signGrade(1), _exeGrade(1), _signed(false)
 {
 }
 
 Form::Form(const std::string &name, const int &s_grade, const int &e_grade)
-	:_name(name), _signGrade(s_grade), _exeGrade(e_grade), _sign(false)
+	:_name(name), _signGrade(s_grade), _exeGrade(e_grade), _signed(false)
 {
 	if (_signGrade < GRADE_MAX || _exeGrade < GRADE_MAX)
 		throw GradeTooHighException();
@@ -15,7 +15,7 @@ Form::Form(const std::string &name, const int &s_grade, const int &e_grade)
 }
 
 Form::Form(const Form &source)
-	:_name(source._name), _signGrade(source._signGrade), _exeGrade(source._exeGrade), _sign(false)
+	:_name(source._name), _signGrade(source._signGrade), _exeGrade(source._exeGrade), _signed(false)
 {
 }
 
@@ -26,7 +26,7 @@ Form &Form::operator = (const Form &source)
 	*const_cast<std::string *>(&_name) = source.getName();
 	*const_cast<int *>(&_signGrade) = source.getSignGrade();
 	*const_cast<int *>(&_exeGrade) = source.getExeGrade();
-	this->_sign = source.getSign();
+	this->_signed = source.getSigned();
 	return (*this);
 }
 
@@ -49,15 +49,15 @@ int Form::getExeGrade() const
 	return (this->_exeGrade);
 }
 
-bool Form::getSign() const
+bool Form::getSigned() const
 {
-	return (this->_sign);
+	return (this->_signed);
 }
 
 void Form::beSigned(const Bureaucrat &someone)
 {
 	if (someone.getGrade() <= this->_signGrade)
-		this->_sign = true;
+		this->_signed = true;
 	else
 		throw GradeTooLowException();
 }
@@ -77,6 +77,6 @@ std::ostream &operator << (std::ostream &out, const Form &source)
 	out << "Form Name : " << source.getName() << std::endl;
 	out << "Sign Grade : " << source.getSignGrade() << std::endl;
 	out << "Execute Grade : " << source.getExeGrade() << std::endl;
-	out << "Sign Status : " << std::boolalpha << source.getSign() << std::noboolalpha << std::endl;
+	out << "Sign Status : " << std::boolalpha << source.getSigned() << std::noboolalpha << std::endl;
 	return (out);
 }
