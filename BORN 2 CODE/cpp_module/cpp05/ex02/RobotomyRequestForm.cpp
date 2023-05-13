@@ -26,7 +26,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor)
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	executalbe(executor);
 	std::cout << "*    Some driling noises...    *" << std::endl;
@@ -36,6 +36,6 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor)
 	if (num % 2)
 		std::cout << getTarget() << " has been robotomized successfully!" << std::endl;
 	else
-		std::cout << getTarget() << " failed failed to be robotomized..." << std::endl;
+		std::cout << getTarget() << " failed to be robotomized..." << std::endl;
 }
 

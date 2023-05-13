@@ -47,6 +47,6 @@ public:
 		virtual const char * what() const throw();
 	};
 };
-std::ostream &operator << (std::ostream out, const AForm &source);
+std::ostream &operator << (std::ostream &out, const AForm &source);
 
 #endif

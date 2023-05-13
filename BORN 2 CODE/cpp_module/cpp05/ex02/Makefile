@@ -7,6 +7,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 DB =
 FA =
 RM = rm -f
+_shrubbery = ./*_shrubbery
 
 object_dir = ./objects
 
@@ -30,7 +31,10 @@ sources1 :=
 
 sources1 += main.cpp
 sources1 += Bureaucrat.cpp
-sources1 += Form.cpp
+sources1 += AForm.cpp
+sources1 += PresidentialPardonForm.cpp
+sources1 += RobotomyRequestForm.cpp
+sources1 += ShrubberyCreationForm.cpp
 
 
 # ---- Bonus ---- #
@@ -76,6 +80,7 @@ clean :
 	@$(RM) $(all_objects)
 	@rm -rf $(object_dir)
 	@echo "$(RED) Delete$(BOLD) objects $(RESTINT)file $(RESET)"
+	@rm -rf $(_shrubbery)
 
 fclean : clean
 	@$(RM) $(NAME)

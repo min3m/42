@@ -65,7 +65,7 @@ void AForm::beSigned(const Bureaucrat &someone)
 	if (someone.getGrade() <= this->_signGrade)
 		this->_signed = true;
 	else
-		throw GradeTooLowException();
+		throw GradeTooHighException();
 }
 
 void AForm::executalbe(Bureaucrat const & executor) const
@@ -73,7 +73,7 @@ void AForm::executalbe(Bureaucrat const & executor) const
 	if (!getSigned())
 		throw DoseNotSingedException();
 	if (executor.getGrade() > getExeGrade())
-		throw GradeTooLowException();
+		throw GradeTooHighException();
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
@@ -98,6 +98,7 @@ const char *AForm::FileOpenException::what() const throw()
 
 std::ostream &operator << (std::ostream &out, const AForm &source)
 {
+	out << "Target : " << source.getTarget() << std::endl;
 	out << "AForm Name : " << source.getName() << std::endl;
 	out << "Sign Grade : " << source.getSignGrade() << std::endl;
 	out << "Execute Grade : " << source.getExeGrade() << std::endl;
