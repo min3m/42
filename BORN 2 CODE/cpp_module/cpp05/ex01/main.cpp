@@ -4,6 +4,7 @@
 int main()
 {
 	Form topSecret("CIA TopSecret", 3, 3);
+	std::cout << topSecret << std::endl;
 	std::cout << std::endl;
 	{
 		Bureaucrat jack("Jack", 45);
@@ -15,14 +16,7 @@ int main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		try
-		{
-			jack.signForm(topSecret);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		jack.signForm(topSecret);
 	}
 	{
 		std::cout << "\n";
@@ -35,14 +29,7 @@ int main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		try
-		{
-			joe.signForm(topSecret);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		joe.signForm(topSecret);
 	}
 	std::cout << "\n";
 	{
