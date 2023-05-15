@@ -70,9 +70,6 @@ void ScalarConverter::convert(std::string str)
 	try
 	{
 		std::cout << "char: '" << ScalarConverter::getCval() << "'" << std::endl;
-		std::cout << "int: " << ScalarConverter::getIval() << std::endl;
-		std::cout << "float: " << ScalarConverter::getFval() << std::endl;
-		std::cout << "double: " << ScalarConverter::getDval() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
