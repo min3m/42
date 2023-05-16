@@ -4,27 +4,31 @@
 #include <string>
 #include <cmath>
 #include <iostream>
+#include <limits>
 #include <exception>
+#include <iomanip>
 
 class ScalarConverter
 {
 private:
 	static char c_value;
+	static bool c_flag;
 	static int i_value;
+	static bool i_flag;
 	static float f_value;
+	static bool f_flag;
 	static double d_value;
+	static bool d_flag;
 
 public:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter &source);
 	ScalarConverter &operator = (const ScalarConverter &source);
 	~ScalarConverter();
-	static char getCval();
-	static int getIval();
-	static float getFval();
-	static double getDval();
 	static void convert(std::string str);
 	static void check_valid(std::string str);
+	static bool my_isnan(double num);
+	static bool my_isinf(double num);
 	class ImpossibleException : public std::exception
 	{
 	public:
