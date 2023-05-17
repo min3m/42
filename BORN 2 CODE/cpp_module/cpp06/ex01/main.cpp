@@ -1,4 +1,4 @@
-#include "Serializer.cpp"
+#include "Serializer.hpp"
 #include <iostream>
 
 int main()
@@ -7,7 +7,7 @@ int main()
 	Data *tmp;
 	ptr = new Data;
 
-	// tmp = Serializer::deserialize(Serializer::serialize(ptr));
+	tmp = Serializer::deserialize(Serializer::serialize(ptr));
 
 	std::cout << "Before : " << ptr << std::endl;
 	std::cout << "After : " << tmp << std::endl;
