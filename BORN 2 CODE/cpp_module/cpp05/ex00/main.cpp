@@ -4,9 +4,9 @@ int main()
 {
 	std::cout << "[Case 1]" << std::endl;
 	{
-		Bureaucrat jim("jim", 3);
 		try
 		{
+			Bureaucrat jim("jim", 3);
 			std::cout << jim << std::endl;
 			jim.incrementGraed();
 			std::cout << jim << std::endl;
@@ -22,9 +22,9 @@ int main()
 	}
 	std::cout << "\n[Case 2]" << std::endl;
 	{
-		Bureaucrat john("john", 149);
 		try
 		{
+			Bureaucrat john("john", 149);
 			std::cout << john << std::endl;
 			john.decrementGraed();
 			std::cout << john << std::endl;

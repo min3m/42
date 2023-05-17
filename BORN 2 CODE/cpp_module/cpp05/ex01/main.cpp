@@ -8,27 +8,13 @@ int main()
 	std::cout << std::endl;
 	{
 		Bureaucrat jack("Jack", 45);
-		try
-		{
-			topSecret.beSigned(jack);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		topSecret.beSigned(jack);
 		jack.signForm(topSecret);
 	}
 	{
 		std::cout << "\n";
 		Bureaucrat joe("Mr.President", 1);
-		try
-		{
-			topSecret.beSigned(joe);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		topSecret.beSigned(joe);
 		joe.signForm(topSecret);
 	}
 	std::cout << "\n";

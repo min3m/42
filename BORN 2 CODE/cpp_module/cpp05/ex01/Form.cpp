@@ -15,7 +15,7 @@ Form::Form(const std::string &name, const int &s_grade, const int &e_grade)
 }
 
 Form::Form(const Form &source)
-	:_name(source._name), _signGrade(source._signGrade), _exeGrade(source._exeGrade), _signed(false)
+	:_name(source._name), _signGrade(source._signGrade), _exeGrade(source._exeGrade), _signed(source._signed)
 {
 }
 
@@ -56,10 +56,17 @@ bool Form::getSigned() const
 
 void Form::beSigned(const Bureaucrat &someone)
 {
-	if (someone.getGrade() <= this->_signGrade)
-		this->_signed = true;
-	else
-		throw GradeTooHighException();
+	try
+	{
+		if (someone.getGrade() <= this->_signGrade)
+			this->_signed = true;
+		else
+			throw GradeTooHighException();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
 
 std::ostream &operator << (std::ostream &out, const Form &source)
