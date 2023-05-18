@@ -62,8 +62,12 @@ void Bureaucrat::signForm(AForm &form) const
 {
 	try
 	{
-		form.beSigned(*this);
-		std::cout << this->name << " signed " << form.getName() << std::endl;
+		if (form.getSigned())
+			std::cout << this->name << " signed " << form.getName() << std::endl;
+		else if (form.getSignGrade() < this->grade)
+			throw GradeTooLowException();
+		else
+			throw DoseNotSingedException();
 	}
 	catch(const std::exception& e)
 	{
@@ -100,4 +104,9 @@ const char *Bureaucrat::GradeTooHighException::what() const throw()
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Bureaucrat's Grade is Too Low!");
+}
+
+const char *Bureaucrat::DoseNotSingedException::what() const throw()
+{
+	return ("Form is not signed!");
 }

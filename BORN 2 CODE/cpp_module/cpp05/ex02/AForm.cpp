@@ -15,7 +15,7 @@ AForm::AForm(const std::string &target, const std::string &name, const int &s_gr
 }
 
 AForm::AForm(const AForm &source)
-	:_target(source._target), _name(source._name), _signGrade(source._signGrade), _exeGrade(source._exeGrade), _signed(false)
+	:_target(source._target), _name(source._name), _signGrade(source._signGrade), _exeGrade(source._exeGrade), _signed(source._signed)
 {
 }
 
@@ -67,7 +67,7 @@ void AForm::beSigned(const Bureaucrat &someone)
 		if (someone.getGrade() <= this->_signGrade)
 			this->_signed = true;
 		else
-			throw GradeTooHighException();
+			throw GradeTooLowException();
 	}
 	catch(const std::exception& e)
 	{
@@ -80,17 +80,17 @@ void AForm::executalbe(Bureaucrat const & executor) const
 	if (!getSigned())
 		throw DoseNotSingedException();
 	if (executor.getGrade() > getExeGrade())
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
-	return ("Form's Grade is Too High!");
+	return ("Grade is Too High!");
 }
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
-	return ("Form's Grade is Too Low!");
+	return ("Grade is Too Low!");
 }
 
 const char *AForm::DoseNotSingedException::what() const throw()
