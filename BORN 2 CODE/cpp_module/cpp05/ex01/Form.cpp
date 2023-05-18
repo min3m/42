@@ -61,7 +61,7 @@ void Form::beSigned(const Bureaucrat &someone)
 		if (someone.getGrade() <= this->_signGrade)
 			this->_signed = true;
 		else
-			throw GradeTooHighException();
+			throw GradeTooLowException();
 	}
 	catch(const std::exception& e)
 	{
@@ -80,10 +80,10 @@ std::ostream &operator << (std::ostream &out, const Form &source)
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return ("Form's Grade is Too High!");
+	return ("Grade is Too High!");
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return ("Form's Grade is Too Low!");
+	return ("Grade is Too Low!");
 }
