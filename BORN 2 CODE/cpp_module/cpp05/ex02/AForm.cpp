@@ -62,17 +62,10 @@ bool AForm::getSigned() const
 
 void AForm::beSigned(const Bureaucrat &someone)
 {
-	try
-	{
-		if (someone.getGrade() <= this->_signGrade)
-			this->_signed = true;
-		else
-			throw GradeTooLowException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (someone.getGrade() <= this->_signGrade)
+		this->_signed = true;
+	else
+		throw GradeTooLowException();
 }
 
 void AForm::executalbe(Bureaucrat const & executor) const

@@ -21,9 +21,6 @@ int main()
 	std::cout << std::endl;
 	std::cout << *f1 << std::endl << *f2 << std::endl << *f3 << std::endl;
 	std::cout << std::endl;
-	f1->beSigned(b2);
-	f2->beSigned(b3);
-	f3->beSigned(b4);
 	b2.signForm(*f1);
 	b3.signForm(*f2);
 	b4.signForm(*f3);

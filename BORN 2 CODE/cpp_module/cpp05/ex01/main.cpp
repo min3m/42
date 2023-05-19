@@ -8,8 +8,9 @@ int main()
 	std::cout << std::endl;
 	{
 		Bureaucrat jack("Jack", 45);
-		topSecret.beSigned(jack);
+		Bureaucrat hye("Hyeseo", 10);
 		jack.signForm(topSecret);
+		hye.signForm(topSecret);
 	}
 	{
 		std::cout << "\n";

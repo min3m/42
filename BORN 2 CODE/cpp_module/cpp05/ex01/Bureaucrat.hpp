@@ -37,7 +37,7 @@ public:
 	public:
 		virtual const char *what() const throw();
 	};
-	class DoseNotSingedException : public std::exception
+	class AlreadySignedException : public std::exception
 	{
 	public:
 		virtual const char * what() const throw();

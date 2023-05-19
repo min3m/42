@@ -63,11 +63,9 @@ void Bureaucrat::signForm(AForm &form) const
 	try
 	{
 		if (form.getSigned())
-			std::cout << this->name << " signed " << form.getName() << std::endl;
-		else if (form.getSignGrade() < this->grade)
-			throw GradeTooLowException();
-		else
-			throw DoseNotSingedException();
+			throw AlreadySignedException();
+		form.beSigned(*this);
+		std::cout << this->name << " signed " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -106,7 +104,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 	return ("Bureaucrat's Grade is Too Low!");
 }
 
-const char *Bureaucrat::DoseNotSingedException::what() const throw()
+const char *Bureaucrat::AlreadySignedException::what() const throw()
 {
-	return ("Form is not signed!");
+	return ("Form is already signed!");
 }

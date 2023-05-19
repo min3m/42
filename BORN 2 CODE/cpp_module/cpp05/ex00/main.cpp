@@ -8,11 +8,11 @@ int main()
 		{
 			Bureaucrat jim("jim", 3);
 			std::cout << jim << std::endl;
-			jim.incrementGraed();
+			jim.incrementGrade();
 			std::cout << jim << std::endl;
-			jim.incrementGraed();
+			jim.incrementGrade();
 			std::cout << jim << std::endl;
-			jim.incrementGraed();
+			jim.incrementGrade();
 			std::cout << jim << std::endl;
 		}
 		catch(const std::exception& e)
@@ -26,9 +26,9 @@ int main()
 		{
 			Bureaucrat john("john", 149);
 			std::cout << john << std::endl;
-			john.decrementGraed();
+			john.decrementGrade();
 			std::cout << john << std::endl;
-			john.decrementGraed();
+			john.decrementGrade();
 			std::cout << john << std::endl;
 		}
 		catch(const std::exception& e)
@@ -42,9 +42,9 @@ int main()
 		{
 			Bureaucrat karen("karen", 151);
 			std::cout << karen << std::endl;
-			karen.decrementGraed();
+			karen.decrementGrade();
 			std::cout << karen << std::endl;
-			karen.decrementGraed();
+			karen.decrementGrade();
 			std::cout << karen << std::endl;
 		}
 		catch(const std::exception& e)
