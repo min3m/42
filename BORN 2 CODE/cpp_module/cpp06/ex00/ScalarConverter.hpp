@@ -19,12 +19,12 @@ private:
 	static bool f_flag;
 	static double d_value;
 	static bool d_flag;
-
-public:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter &source);
 	ScalarConverter &operator = (const ScalarConverter &source);
 	~ScalarConverter();
+
+public:
 	static void convert(std::string str);
 	static void check_valid(std::string str);
 	static bool my_isnan(double num);

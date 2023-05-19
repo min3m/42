@@ -6,8 +6,8 @@
 
 Base* generate(void)
 {
-	srand((unsigned int)time(NULL));
-	int num = rand();
+	std::srand((unsigned int)time(NULL));
+	int num = std::rand();
 	switch (num % 3)
 	{
 	case 0:
