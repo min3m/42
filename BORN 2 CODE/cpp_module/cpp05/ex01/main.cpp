@@ -15,7 +15,6 @@ int main()
 	{
 		std::cout << "\n";
 		Bureaucrat joe("Mr.President", 1);
-		topSecret.beSigned(joe);
 		joe.signForm(topSecret);
 	}
 	std::cout << "\n";
