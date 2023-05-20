@@ -29,18 +29,18 @@ public:
 	}
 	Array &operator = (const Array &source)
 	{
-		delete [] _array;
 		if (this == &source)
 			return (*this);
+		delete [] _array;
 		_length = source._length;
 		_array = new T[_length];
 		for (unsigned int i = 0; i < _length; i++)
 			_array[i] = source._array[i];
 		return (*this);
 	}
-	T &operator [] (const unsigned int &index)
+	T &operator [] (const int &index)
 	{
-		if (index < 0 || index >= _length)
+		if (index < 0 || static_cast<unsigned int>(index) >= _length)
 			throw OutOfRangeException();
 		return (_array[index]);
 	}
