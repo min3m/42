@@ -147,12 +147,13 @@ void ScalarConverter::convert(std::string str)
 		else
 		{
 			std::cout << "float: ";
-			if (powf(f_value, 2) == f_value)
+			if (my_isinf(f_value) && powf(f_value, 2) == f_value)
 				std::cout << "+";
-			if (abs(f_value - static_cast<int>(f_value)) < 1e-12)
+			if (abs(f_value - static_cast<int>(f_value)) < 1e-6)
 				std::cout << f_value << ".0";
 			else
 				std::cout << std::setprecision(std::numeric_limits<float>::digits10) << f_value;
+			std::cout << std::endl;
 		}
 	}
 	catch(const std::exception& e)
@@ -166,7 +167,7 @@ void ScalarConverter::convert(std::string str)
 		else
 		{
 			std::cout << "double: ";
-			if (pow(d_value, 2) == d_value)
+			if (my_isinf(d_value) && pow(d_value, 2) == d_value)
 				std::cout << "+";
 			if (abs(d_value - static_cast<int>(d_value)) < 1e-12)
 				std::cout << d_value << ".0";
