@@ -29,6 +29,7 @@ RED = \033[31m
 sources1 :=
 
 sources1 += main.cpp
+sources1 += span.cpp
 
 
 
