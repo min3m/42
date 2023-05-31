@@ -2,21 +2,26 @@
 
 int main()
 {
-	Span sp = Span(5);
+	Span sp1 = Span(5);
+	Span sp2 = Span(10);
 	try
 	{
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
-		sp.addNumber(10);
+		sp1.addNumber(6);
+		sp1.addNumber(3);
+		sp1.addNumber(17);
+		sp1.addNumber(9);
+		sp1.addNumber(11);
+		sp1.addNumber(10);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	std::cout << sp1.shortestSpan() << std::endl;
+	std::cout << sp1.longestSpan() << std::endl;
+	sp2.addRandomNum();
+	sp2.printVector();
+	std::cout << sp2.shortestSpan() << std::endl;
+	std::cout << sp2.longestSpan() << std::endl;
 	return (0);
 }

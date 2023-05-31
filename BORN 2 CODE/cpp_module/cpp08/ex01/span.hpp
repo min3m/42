@@ -6,6 +6,8 @@
 #include <exception>
 #include <numeric>
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 class Span
 {
@@ -19,8 +21,10 @@ public:
 	Span &operator = (const Span &source);
 	~Span();
 	void addNumber(int num);
+	void addRandomNum();
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
+	void printVector();
 	class AlreadyFullException : public std::exception
 	{
 		public:
