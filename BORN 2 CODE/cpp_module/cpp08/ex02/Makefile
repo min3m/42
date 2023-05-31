@@ -1,6 +1,6 @@
 # ---- NAME ---- #
 
-NAME = span
+NAME = mutantstack
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -29,7 +29,6 @@ RED = \033[31m
 sources1 :=
 
 sources1 += main.cpp
-sources1 += span.cpp
 
 
 

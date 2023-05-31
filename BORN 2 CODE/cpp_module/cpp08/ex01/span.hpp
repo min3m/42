@@ -2,22 +2,30 @@
 #define SPAN_HPP
 
 #include <vector>
+#include <algorithm>
 #include <exception>
+#include <numeric>
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 class Span
 {
 private:
-	std::vector<unsigned int> v;
+	std::vector<int> v;
 
 public:
+	Span();
 	Span(unsigned int N);
 	Span(const Span &source);
 	Span &operator = (const Span &source);
 	~Span();
-	void addNumber(unsigned int N);
+	void addNumber(int num);
+	void addRandomNum();
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
-	class AlreadyExistException : public std::exception
+	void printVector();
+	class AlreadyFullException : public std::exception
 	{
 		public:
 			virtual const char * what() const throw();
