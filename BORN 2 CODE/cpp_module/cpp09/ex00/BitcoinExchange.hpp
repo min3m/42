@@ -10,7 +10,8 @@
 #define BadInput 0
 #define Notpositive 1
 #define TooLagre 2
-#define Valid 3
+#define NotValidDate 3
+#define Valid 4
 
 class BitcoinExchange
 {
@@ -28,6 +29,7 @@ public:
 	bool isNum(const std::string &line);
 	bool isFloat(const std::string &line);
 	int find_date(int &date);
+	bool check_date(int &year, int &month, int &day, int &date);
 };
 
 #endif
