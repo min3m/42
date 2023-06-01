@@ -104,7 +104,7 @@ int BitcoinExchange::check_valid(const std::string &line, float &result)
 
 bool BitcoinExchange::isNum(const std::string &line)
 {
-	for(size_t i = 0; i < line.size(); i++)
+	for(std::size_t i = 0; i < line.size(); i++)
 	{
 		if (!std::isdigit(line[i]))
 			return (false);
@@ -118,7 +118,7 @@ bool BitcoinExchange::isFloat(const std::string &line)
 		return (false);
 	if (std::count(line.begin(), line.end() , '-') > 1)
 		return (false);
-	for(size_t i = 0; i < line.size(); i++)
+	for(std::size_t i = 0; i < line.size(); i++)
 	{
 		if (!std::isdigit(line[i]) && line[i] != '.' && line[i] != '-')
 			return (false);
