@@ -6,11 +6,6 @@
 #include <string>
 
 template <typename T>
-void iter(T *array, std::size_t size, void (*add)(T&));
-template <typename T>
-void add(T &t);
-
-template <typename T>
 void iter(T *array, std::size_t size, void (*add)(T&))
 {
 	for (std::size_t i = 0; i < size; i++)

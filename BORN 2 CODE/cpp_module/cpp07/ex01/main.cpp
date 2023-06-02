@@ -3,7 +3,6 @@
 
 int main()
 {
-	std::string s = "Ji";
 	std::string str[3] = {"Hello", "my", "name"};
 	int i[6] = {1, 2, 3, 4, 5, 6};
 	char c[6] = {'a', 'b', 'c', 'd', 'e', 'f'};
