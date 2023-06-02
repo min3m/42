@@ -11,11 +11,12 @@ int main(int argc, char *argv[])
 		{
 			rpn.do_RPN(argv[1]);
 		}
-		catch(const std::string& e)
+		catch(const std::exception& e)
 		{
-			std::cerr << e << '\n';
+			std::cerr << e.what() << '\n';
 		}
 	}
+
 	else
 		std::cout << "Error" << std::endl;
 	return (0);
