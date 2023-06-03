@@ -12,8 +12,8 @@ void iter(T *array, std::size_t size, void (*add)(T&))
 		add(array[i]);
 }
 
-template <typename T>
-void add(T &t)
+template <typename TT>
+void add(TT &t)
 {
 	t += 1;
 }
