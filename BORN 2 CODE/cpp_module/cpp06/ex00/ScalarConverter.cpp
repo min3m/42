@@ -15,7 +15,7 @@ ScalarConverter::ScalarConverter()
 
 ScalarConverter::ScalarConverter(const ScalarConverter &source)
 {
-	*this = source;
+	static_cast<void>(source);
 }
 
 ScalarConverter &ScalarConverter::operator = (const ScalarConverter &source)

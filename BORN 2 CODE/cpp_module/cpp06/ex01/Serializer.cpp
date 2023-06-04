@@ -6,7 +6,7 @@ Serializer::Serializer()
 
 Serializer::Serializer(const Serializer &source)
 {
-	(*this) = source;
+	static_cast<void>(source);
 }
 
 Serializer &Serializer::operator = (const Serializer &source)

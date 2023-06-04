@@ -66,6 +66,10 @@
 		"vector": "cpp",
 		"queue": "cpp",
 		"list": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"numeric": "cpp",
+		"__tree": "cpp",
+		"map": "cpp",
+		"filesystem": "cpp"
 	}
 }
