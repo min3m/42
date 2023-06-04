@@ -1,8 +1,12 @@
 #include <iostream>
-#include "foo.hpp"
+#include <string>
 
-void doSomething()
+int main()
 {
-	std::cout << "HELLO " << std::endl;
-	std::cout << foo::my_pi << " " << &foo::my_pi << std::endl;
+	const std::string str1("abcedf");
+	const std::string str2;
+
+	static_cast<std::string>(str2) = str1;
+	std::cout << str2 << std::endl;
+	return (0);
 }
