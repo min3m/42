@@ -64,18 +64,18 @@ void ScalarConverter::check_valid(std::string str)
 	}
 	else
 	{
-		tmp_l = std::strtol(str.c_str(), &end, 10);
+		tmp_l = strtol(str.c_str(), &end, 10);
 		if (errno != ERANGE && !(*end) && tmp_l >= INT_MIN && tmp_l <= INT_MAX)
 		{
 			i_value = static_cast<int>(tmp_l);
-			if (i_value <= CHAR_MIN || i_value >= CHAR_MAX)
+			if (i_value < CHAR_MIN || i_value > CHAR_MAX)
 				c_flag = true;
 			c_value = static_cast<char>(i_value);
 			f_value = static_cast<float>(i_value);
 			d_value = static_cast<double>(i_value);
 			return ;
 		}
-		tmp_d = std::strtod(str.c_str(), &end);
+		tmp_d = strtod(str.c_str(), &end);
 		if (errno != ERANGE && *end == 'f' && !(*(end + 1))
 			&& tmp_d >= std::numeric_limits<float>::min() && tmp_d <= std::numeric_limits<float>::max())
 		{
@@ -119,11 +119,17 @@ void ScalarConverter::convert(std::string str)
 	try
 	{
 		if(c_flag)
+		{
+			std::cout << "char: ";
 			throw (ScalarConverter::ImpossibleException());
-		else if (isprint(c_value))
+		}
+		else if (std::isprint(c_value))
 			std::cout << "char: '" << c_value << "'" << std::endl;
 		else
+		{
+			std::cout << "char: ";
 			throw (ScalarConverter::NonDisplayableException());
+		}
 	}
 	catch(const std::exception& e)
 	{
@@ -131,10 +137,11 @@ void ScalarConverter::convert(std::string str)
 	}
 	try
 	{
+		std::cout << "int: ";
 		if(i_flag)
 			throw (ScalarConverter::ImpossibleException());
 		else
-			std::cout << "int: " << i_value << std::endl;
+			std::cout << i_value << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -142,17 +149,17 @@ void ScalarConverter::convert(std::string str)
 	}
 	try
 	{
+		std::cout << "float: ";
 		if(f_flag)
 			throw (ScalarConverter::ImpossibleException());
 		else
 		{
-			std::cout << "float: ";
 			if (my_isinf(f_value) && powf(f_value, 2) == f_value)
 				std::cout << "+";
 			if (abs(f_value - static_cast<int>(f_value)) < 1e-6)
-				std::cout << f_value << ".0";
+				std::cout << f_value << ".0f";
 			else
-				std::cout << std::setprecision(std::numeric_limits<float>::digits10) << f_value;
+				std::cout << std::setprecision(std::numeric_limits<float>::digits10) << f_value << "f";
 			std::cout << std::endl;
 		}
 	}
@@ -162,11 +169,11 @@ void ScalarConverter::convert(std::string str)
 	}
 	try
 	{
+		std::cout << "double: ";
 		if(d_flag)
 			throw (ScalarConverter::ImpossibleException());
 		else
 		{
-			std::cout << "double: ";
 			if (my_isinf(d_value) && pow(d_value, 2) == d_value)
 				std::cout << "+";
 			if (abs(d_value - static_cast<int>(d_value)) < 1e-12)
