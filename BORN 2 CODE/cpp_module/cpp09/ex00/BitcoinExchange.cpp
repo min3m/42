@@ -83,6 +83,8 @@ int BitcoinExchange::check_valid(const std::string &line, float &result)
 		return (BadInput);
 	if (!isFloat(line.substr(13)))
 		return (BadInput);
+	if (line.substr(11, 1) != "|")
+		return (BadInput);
 	std::stringstream ss(line.substr(13));
 	ss >> value;
 	if (value > 1000)
@@ -132,7 +134,7 @@ int BitcoinExchange::find_date(int &date)
 
 	for (iter = upbit.begin(); iter != upbit.end(); iter++)
 	{
-		if (iter->first < date && (iter++) != upbit.end() && iter->first > date)
+		if (iter->first < date && (++iter) != upbit.end() && iter->first > date)
 			return ((--iter)->first);
 		--iter;
 	}
