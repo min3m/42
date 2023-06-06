@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <deque>
+#include <list>
 #include <string>
 #include <iostream>
 #include <limits>
@@ -51,11 +52,11 @@ public:
 		start = clock();
 		merge_sort(vec, 0, static_cast<int>(vec.size() - 1), 16);
 		finish = clock();
-		double vector_time = static_cast<double>(finish - start) / 100.0;
+		double vector_time = static_cast<double>(finish - start) / 1000.0;
 		start = clock();
 		merge_sort(deq, 0, static_cast<int>(deq.size() - 1), 16);
 		finish = clock();
-		double deque_time = static_cast<double>(finish - start) / 100.0;
+		double deque_time = static_cast<double>(finish - start) / 1000.0;
 		if (issorted())
 			std::cout << "\n\nTwo container are sorted!\n\n" << std::endl;
 		else
@@ -67,24 +68,22 @@ public:
 		}
 		std::cout << std::endl;
 		std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : ";
-		std::cout << std::fixed << std::setprecision(6) << vector_time << "us" << std::endl;
+		std::cout << std::fixed << std::setprecision(6) << vector_time << "s" << std::endl;
 		std::cout << "Time to process a range of " << deq.size() << " elements with std::deque : ";
-		std::cout << std::fixed << std::setprecision(6) << deque_time << "us" << std::endl;
+		std::cout << std::fixed << std::setprecision(6) << deque_time << "s" << std::endl;
 	}
 	void check_vaild(std::string &num)
 	{
 		long number;
+		char *end;
 
-		number = std::atol(num.c_str());
-		if (number > std::numeric_limits<unsigned int>::max())
+		number = std::strtol(num.c_str(), &end, 10);
+		if (errno == ERANGE || number > std::numeric_limits<unsigned int>::max())
 		{
 			throw std::invalid_argument("Error: too big number");
 		}
-		for (std::size_t i = 0; i < num.length(); i++)
-		{
-			if (!std::isdigit(num[i]))
-				throw std::invalid_argument("Error: not a vaild number");
-		}
+		if (*end)
+			throw std::invalid_argument("Error: not a vaild number");
 	}
 	template <typename T>
 	void merge_sort(T &container, int left, int right, int size)
