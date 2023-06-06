@@ -3,7 +3,7 @@
 int main()
 {
 	Span sp1 = Span(5);
-	Span sp2 = Span(10);
+	Span sp2 = Span(100);
 	try
 	{
 		sp1.addNumber(6);

@@ -1,6 +1,7 @@
-#include "foo.hpp"
-
-namespace foo{
-	extern const double my_pi(3.141592);
-	extern const double my_g(9.8);
+#include <iostream>
+int main()
+{
+	int *a = new int();
+	std::cout << *a << std::endl;
+	return (0);
 }

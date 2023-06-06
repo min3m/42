@@ -4,6 +4,11 @@
 #include "MateriaSource.hpp"
 #include <iomanip>
 
+void leaks()
+{
+	system("leaks Game > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
+}
+
 void test_normal(void)
 {
 	IMateriaSource* src = new MateriaSource();
@@ -50,7 +55,7 @@ void test_other(void)
 	AMateria* tmp1 = src->createMateria("ice");
 	me->equip(tmp1);
 	AMateria* tmp2 = src->createMateria("cure");
-	me->equip(tmp);
+	me->equip(tmp2);
 
 	me->unequip(2);
 	me->unequip(3);
@@ -76,6 +81,6 @@ int main(void)
 	std::cout << std::setfill('=') << std::setw(100) << "\n" << std::setfill(' ');
 	test_other();
 	std::cout << std::setfill('=') << std::setw(100) << "\n" << std::setfill(' ');
-	system("leaks Game > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
+	atexit(leaks);
 	return 0;
 }
