@@ -1,2 +1,0 @@
-FROM
-RUN alp
