@@ -1,6 +1,5 @@
 #include "iter.hpp"
 
-
 int main()
 {
 	std::string str[3] = {"Hello", "my", "name"};
