@@ -4,7 +4,7 @@
 #include <string>
 #include "ASpell.hpp"
 
-
+class ASpell;
 class ATarget
 {
 protected:
