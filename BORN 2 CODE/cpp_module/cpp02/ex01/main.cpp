@@ -6,7 +6,7 @@
 /*   By: youngmch <youngmch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:52:14 by youngmch          #+#    #+#             */
-/*   Updated: 2023/04/24 21:10:32 by youngmch         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:39:15 by youngmch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int main()
 {
 	Fixed a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
+	Fixed const b( -10 );
+	Fixed const c( -42.42f );
 	Fixed const d( b );
 	a = Fixed( 1234.4321f );
 

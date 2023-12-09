@@ -27,6 +27,9 @@ void test_normal(void)
 	me->use(0, *bob);
 	me->use(1, *bob);
 
+	me->unequip(0);
+	me->unequip(1);
+
 	delete bob;
 	delete me;
 	delete src;
@@ -81,6 +84,6 @@ int main(void)
 	std::cout << std::setfill('=') << std::setw(100) << "\n" << std::setfill(' ');
 	test_other();
 	std::cout << std::setfill('=') << std::setw(100) << "\n" << std::setfill(' ');
-	atexit(leaks);
+	// atexit(leaks);
 	return 0;
 }
